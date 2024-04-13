@@ -27,19 +27,19 @@ points = PoolVector2Array( 4, 16, 16, 16, 16, 32, 4, 32 )
 points = PoolVector2Array( 0, 16, 12, 16, 12, 32, 0, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 16, 32, 4, 32, 4, 0, 16, 0 )
+points = PoolVector2Array( 16, 32, 4, 32, 4, 0, 12, 0, 12, 16, 16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
 points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
-points = PoolVector2Array( 12, 32, 0, 32, 0, 16, 12, 16 )
+points = PoolVector2Array( 12, 32, 0, 32, 0, 16, 4, 16, 4, 0, 12, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
-points = PoolVector2Array( 16, 32, 4, 32, 4, 16, 16, 16 )
+points = PoolVector2Array( 16, 32, 4, 32, 4, 0, 12, 0, 12, 16, 16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
-points = PoolVector2Array( 12, 32, 0, 32, 0, 16, 12, 16 )
+points = PoolVector2Array( 12, 32, 0, 32, 0, 16, 4, 16, 4, 0, 12, 0 )
 
 [resource]
 0/name = "TopLeftWall"
