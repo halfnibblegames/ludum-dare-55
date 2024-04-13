@@ -26,6 +26,11 @@ public class WorldManager : Node2D
 
         Global.Services.ProvideInScene(this);
         if (currentLevel is not null) resetLevel();
+
+        if (OS.IsDebugBuild())
+        {
+            AddChild(new DebugHelpers());
+        }
     }
 
     public override void _Process(float delta)
