@@ -47,6 +47,11 @@ public class WorldManager : Node2D
             camera.Position = host.Position;
             return;
         }
+        if (currentActor is EldritchActor { CanSeeHost: false })
+        {
+            camera.Position = currentActor.Position;
+            return;
+        }
 
         var hostPosition = host.Position;
         var actorPosition = currentActor.Position;
@@ -119,7 +124,6 @@ public class WorldManager : Node2D
         if (currentActor != summonedForms[^1]) throw new InvalidOperationException();
 
         var targetActor = summonedForms.Count > 1 ? summonedForms[^2] : host;
-        // TODO: check line of sight
         var oldActor = currentActor;
         activateActor(targetActor);
         oldActor.Banish();
