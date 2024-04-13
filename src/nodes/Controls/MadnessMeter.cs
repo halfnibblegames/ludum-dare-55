@@ -16,7 +16,7 @@ public class MadnessMeter : TextureRect
         var host = Global.Services.Get<Host>();
         var material = GetNode<ColorRect>("../CanvasLayer/PostProcess").Material as ShaderMaterial;
 
-        var madnessPercentage = host.Madness / Host.MaxMadness;
+        var madnessPercentage = host.Madness / host.MadnessCap;
 
         madnessBar.RectSize = madnessBar.RectSize with { x = (int)(fullMadnessBarSize * madnessPercentage) };
 

@@ -7,12 +7,14 @@ namespace HalfNibbleGame.Objects;
 public class Host : Actor
 {
     private const float summoningDuration = 0.7f;
-    public const double MaxMadness = 200;
 
     [Export] private float speed = 100;
+    [Export] private float madnessCap = 200;
 
     protected override float Speed => speed;
+
     public float Madness { get; set; }
+    public float MadnessCap => 200;
     
     private float summoningTimeout = 0.0f;
     
