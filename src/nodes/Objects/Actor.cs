@@ -4,6 +4,7 @@ namespace HalfNibbleGame.Objects;
 
 public abstract class Actor : KinematicBody2D
 {
+    private bool isActive;
     protected abstract float Speed { get; }
 
     public void Reset(Vector2 tile, TileMap tileMap)
@@ -21,6 +22,8 @@ public abstract class Actor : KinematicBody2D
         OnReset();
     }
 
+    protected virtual void OnReset() {}
+
     public void MakeActive(bool suppressSmoothCamera = false)
     {
         var camera = GetNode<ShakeCamera>("ShakeCamera");
@@ -29,12 +32,25 @@ public abstract class Actor : KinematicBody2D
         {
             camera.ResetSmoothing();
         }
+
+        isActive = true;
     }
 
-    protected virtual void OnReset() {}
+    public void Suspend()
+    {
+        isActive = false;
+    }
+
+    public void Banish()
+    {
+        Suspend();
+        QueueFree();
+    }
 
     public override void _PhysicsProcess(float delta)
     {
+        if (!isActive) return;
+
         var velocity = Vector2.Zero;
 
         velocity.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
