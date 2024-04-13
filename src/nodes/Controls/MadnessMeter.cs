@@ -1,4 +1,5 @@
 using Godot;
+using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Objects;
 
 namespace HalfNibbleGame.Controls;
@@ -12,15 +13,10 @@ public class MadnessMeter : TextureRect
     {
         // TODO: Make this less disgusting by using events or some other way of observing the player.
         var madnessBar = GetNode<ColorRect>("../MadnessBar");
-        var portrait = GetNode<TextureRect>("../PlayerPortrait");
-        var player = GetNode<Player>("../ViewportContainer/Viewport/World/Player");
+        var host = Global.Services.Get<Host>();
         var material = GetNode<ColorRect>("../CanvasLayer/PostProcess").Material as ShaderMaterial;
-        Visible = portrait.Visible = madnessBar.Visible = player is not null;
 
-        if (player is null)
-            return;
-
-        var madnessPercentage = player.Madness / Player.MaxMadness;
+        var madnessPercentage = host.Madness / Host.MaxMadness;
 
         madnessBar.RectSize = madnessBar.RectSize with { x = (int)(fullMadnessBarSize * madnessPercentage) };
 

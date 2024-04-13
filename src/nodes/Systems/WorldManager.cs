@@ -6,19 +6,19 @@ using HalfNibbleGame.Objects;
 
 namespace HalfNibbleGame.Systems;
 
-public class Summons : Node2D
+public class WorldManager : Node2D
 {
     private readonly List<Actor> summonedForms = new();
 
     private Camera2D camera = null!;
-    private Player player = null!;
+    private Host host = null!;
     private Actor? currentActor;
     private Level? currentLevel;
 
     public override void _Ready()
     {
         camera = Global.Services.Get<ShakeCamera>();
-        player = Global.Services.Get<Player>();
+        host = Global.Services.Get<Host>();
         currentLevel = GetNodeOrNull<Level>("SandboxLevel");
 
         Global.Services.ProvideInScene(this);
@@ -59,8 +59,8 @@ public class Summons : Node2D
     {
         if (currentLevel is null) throw new InvalidOperationException();
 
-        player.Reset(currentLevel.StartTile, currentLevel.TileMap);
-        activateActor(player);
+        host.Reset(currentLevel.StartTile, currentLevel.TileMap);
+        activateActor(host);
     }
 
     public void SummonForm(Vector2 tile)

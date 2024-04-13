@@ -8,6 +8,7 @@ public abstract class Actor : KinematicBody2D
     private TileMap? tileMap;
     protected bool IsActive { get; private set; }
     protected abstract float Speed { get; }
+    private Vector2 velocity;
 
     protected Vector2 FindCurrentTile()
     {
@@ -49,11 +50,18 @@ public abstract class Actor : KinematicBody2D
         QueueFree();
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // TODO: update animation here based on velocity
+    }
+
     public override void _PhysicsProcess(float delta)
     {
         if (!IsActive) return;
 
-        var velocity = Vector2.Zero;
+        velocity = Vector2.Zero;
 
         velocity.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
         velocity.y = Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");

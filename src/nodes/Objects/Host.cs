@@ -4,7 +4,7 @@ using HalfNibbleGame.Systems;
 
 namespace HalfNibbleGame.Objects;
 
-public class Player : Actor
+public class Host : Actor
 {
     public const double MaxMadness = 200;
 
@@ -33,7 +33,7 @@ public class Player : Actor
 
         if (Input.IsActionJustPressed("summon_spirit"))
         {
-            Global.Services.Get<Summons>().SummonForm(FindCurrentTile() + Vector2.Right);
+            Global.Services.Get<WorldManager>().SummonForm(FindCurrentTile() + Vector2.Right);
         }
     }
 }
