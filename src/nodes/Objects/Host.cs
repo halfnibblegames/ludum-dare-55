@@ -31,7 +31,7 @@ public class Host : Actor
 
         if (!IsActive) return;
 
-        if (Input.IsActionJustPressed("summon_spirit"))
+        if (Input.IsActionJustPressed("summon_imp"))
         {
             Global.Services.Get<WorldManager>().SummonForm(FindCurrentTile() + Vector2.Right);
         }
