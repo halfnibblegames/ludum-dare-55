@@ -1,5 +1,6 @@
 using Godot;
 using HalfNibbleGame.Autoload;
+using HalfNibbleGame.Systems;
 
 namespace HalfNibbleGame.Objects;
 
@@ -12,7 +13,6 @@ public class Player : Actor
     protected override float Speed => speed;
 
     public float Madness { get; private set; }
-    public ISpirit? CurrentSpirit { get; private set; }
 
     public override void _Ready()
     {
@@ -27,20 +27,13 @@ public class Player : Actor
 
     public override void _Process(float delta)
     {
-        Madness += delta * (CurrentSpirit?.MadnessPerSecond ?? 0);
+        base._Process(delta);
 
-        if (!Input.IsActionJustPressed("summon_spirit")) return;
+        if (!IsActive) return;
 
-        if (CurrentSpirit is null)
+        if (Input.IsActionJustPressed("summon_spirit"))
         {
-            CurrentSpirit = new PhaseSpirit();
-            Madness += CurrentSpirit.InitialMadness;
-            CurrentSpirit.Begin(this);
-        }
-        else
-        {
-            CurrentSpirit.End(this);
-            CurrentSpirit = null;
+            Global.Services.Get<Summons>().SummonForm(FindCurrentTile() + Vector2.Right);
         }
     }
 }

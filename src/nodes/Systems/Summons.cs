@@ -6,20 +6,21 @@ using HalfNibbleGame.Objects;
 
 namespace HalfNibbleGame.Systems;
 
-public class WorldLoader : Node2D
+public class Summons : Node2D
 {
     private readonly List<Actor> summonedForms = new();
 
     private Player player = null!;
+    private Actor? currentActor;
     private Level? currentLevel;
 
     public override void _Ready()
     {
         player = Global.Services.Get<Player>();
         currentLevel = GetNodeOrNull<Level>("SandboxLevel");
-        if (currentLevel is not null) resetPlayerForLevel();
 
         Global.Services.ProvideInScene(this);
+        if (currentLevel is not null) resetLevel();
     }
 
     public override void _Process(float delta)
@@ -37,6 +38,9 @@ public class WorldLoader : Node2D
             form.Banish();
         }
         summonedForms.Clear();
+        currentActor = null;
+
+        resetPlayerForLevel();
     }
 
     private void resetPlayerForLevel()
@@ -44,7 +48,7 @@ public class WorldLoader : Node2D
         if (currentLevel is null) throw new InvalidOperationException();
 
         player.Reset(currentLevel.StartTile, currentLevel.TileMap);
-        player.MakeActive(true);
+        activateActor(player);
     }
 
     public void SummonForm(Vector2 tile)
@@ -53,14 +57,23 @@ public class WorldLoader : Node2D
 
         // TODO: allow other forms
         var scene = Global.Prefabs.Imp;
-        if (scene?.Instance() is not Actor instance)
+        if (scene?.Instance() is not Actor actor)
         {
             GD.PrintErr("Failed to instantiate summoned form.");
             return;
         }
 
-        GetParent().AddChild(instance);
-        instance.Reset(tile, currentLevel.TileMap);
-        summonedForms.Add(instance);
+        GetParent().AddChild(actor);
+        summonedForms.Add(actor);
+
+        actor.Reset(tile, currentLevel.TileMap);
+        activateActor(actor);
+    }
+
+    private void activateActor(Actor actor)
+    {
+        currentActor?.Suspend();
+        actor.MakeActive();
+        currentActor = actor;
     }
 }

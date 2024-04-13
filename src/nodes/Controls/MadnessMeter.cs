@@ -23,7 +23,6 @@ public class MadnessMeter : TextureRect
         var madnessPercentage = player.Madness / Player.MaxMadness;
 
         madnessBar.RectSize = madnessBar.RectSize with { x = (int)(fullMadnessBarSize * madnessPercentage) };
-        madnessBar.Color = player.CurrentSpirit?.Color ?? madnessBar.Color;
 
         material?.SetShaderParam("amount", madnessPercentage * maxAberration);
     }

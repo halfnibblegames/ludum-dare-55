@@ -1,14 +1,25 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace HalfNibbleGame.Objects;
 
 public abstract class Actor : KinematicBody2D
 {
-    private bool isActive;
+    private TileMap? tileMap;
+    protected bool IsActive { get; private set; }
     protected abstract float Speed { get; }
 
+    protected Vector2 FindCurrentTile()
+    {
+        if (tileMap is null) throw new InvalidOperationException();
+        return tileMap.WorldToMap(tileMap.ToLocal(GlobalPosition));
+    }
+
+    // ReSharper disable once ParameterHidesMember
     public void Reset(Vector2 tile, TileMap tileMap)
     {
+        this.tileMap = tileMap;
+
         var localPos = tileMap.MapToWorld(tile);
         var globalPos = tileMap.ToGlobal(localPos);
         GlobalPosition = globalPos;
@@ -18,27 +29,28 @@ public abstract class Actor : KinematicBody2D
         camera.LimitTop = (int) tileMap.GetUsedRect().Position.y;
         camera.LimitRight = (int) (tileMap.GetUsedRect().End.x * tileMap.CellSize.x);
         camera.LimitBottom = (int) (tileMap.GetUsedRect().End.y * tileMap.CellSize.y);
+        camera.ResetSmoothing();
 
         OnReset();
     }
 
     protected virtual void OnReset() {}
 
-    public void MakeActive(bool suppressSmoothCamera = false)
+    public void MakeActive()
     {
+        if (IsActive) return;
+
         var camera = GetNode<ShakeCamera>("ShakeCamera");
         camera.MakeCurrent();
-        if (suppressSmoothCamera)
-        {
-            camera.ResetSmoothing();
-        }
 
-        isActive = true;
+        IsActive = true;
     }
 
     public void Suspend()
     {
-        isActive = false;
+        if (!IsActive) return;
+
+        IsActive = false;
     }
 
     public void Banish()
@@ -49,7 +61,7 @@ public abstract class Actor : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        if (!isActive) return;
+        if (!IsActive) return;
 
         var velocity = Vector2.Zero;
 

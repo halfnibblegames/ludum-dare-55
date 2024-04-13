@@ -19,7 +19,6 @@ public sealed class ShakeCamera : Camera2D
         noise.Seed = (int) GD.Randi();
         noise.Period = 4;
         noise.Octaves = 2;
-        Global.Services.ProvideInScene(this);
     }
 
     public override void _Process(float delta)
