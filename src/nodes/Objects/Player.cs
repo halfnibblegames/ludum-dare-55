@@ -14,9 +14,14 @@ public class Player : KinematicBody2D
 
     public override void _Ready()
     {
-        var startTile = Global.Services.Get<LevelAttributes>().StartTile;
-        var tileMap = Global.Services.Get<LevelTileMap>();
-        var localPos = tileMap.MapToWorld(startTile);
+        Global.Services.ProvideInScene(this);
+    }
+
+    public void Reset(LevelAttributes attributes, TileMap tileMap)
+    {
+        Madness = 0;
+
+        var localPos = tileMap.MapToWorld(attributes.StartTile);
         var globalPos = tileMap.ToGlobal(localPos);
         GlobalPosition = globalPos;
 
@@ -25,6 +30,7 @@ public class Player : KinematicBody2D
         camera.LimitTop = (int) tileMap.GetUsedRect().Position.y;
         camera.LimitRight = (int) (tileMap.GetUsedRect().End.x * tileMap.CellSize.x);
         camera.LimitBottom = (int) (tileMap.GetUsedRect().End.y * tileMap.CellSize.y);
+        camera.ResetSmoothing();
     }
 
     public override void _Process(float delta)
