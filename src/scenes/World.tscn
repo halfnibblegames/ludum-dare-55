@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://nodes/ShakeCamera.cs" type="Script" id=1]
 [ext_resource path="res://assets/backpack.png" type="Texture" id=2]
 [ext_resource path="res://nodes/WorldClickable.cs" type="Script" id=3]
+[ext_resource path="res://scenes/Levels/SandboxLevel.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 13 )
@@ -16,6 +17,7 @@ editor_draw_screen = false
 script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2( 41, 32 )
 monitoring = false
 monitorable = false
@@ -27,3 +29,5 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Area2D"]
 scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 2 )
+
+[node name="Node2D" parent="." instance=ExtResource( 4 )]
