@@ -7,6 +7,8 @@ public class Player : KinematicBody2D
 {
     [Export] private float speed = 100;
 
+    private ISpirit? currentSpirit;
+
     public override void _Ready()
     {
         var startTile = Global.Services.Get<LevelAttributes>().StartTile;
@@ -14,6 +16,22 @@ public class Player : KinematicBody2D
         var localPos = tileMap.MapToWorld(startTile);
         var globalPos = tileMap.ToGlobal(localPos);
         GlobalPosition = globalPos;
+    }
+
+    public override void _Process(float delta)
+    {
+        if (!Input.IsActionJustPressed("summon_spirit")) return;
+
+        if (currentSpirit is null)
+        {
+            currentSpirit = new PhaseSpirit();
+            currentSpirit.Begin(this);
+        }
+        else
+        {
+            currentSpirit.End(this);
+            currentSpirit = null;
+        }
     }
 
     public override void _PhysicsProcess(float delta)
