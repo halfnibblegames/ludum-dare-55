@@ -1,17 +1,22 @@
 using Godot;
+using HalfNibbleGame.Autoload;
 
 namespace HalfNibbleGame.Objects;
 
-public class Player : Area2D
+public class Player : KinematicBody2D
 {
     [Export] private float speed = 100;
 
     public override void _Ready()
     {
-        
+        var startTile = Global.Services.Get<LevelAttributes>().StartTile;
+        var tileMap = Global.Services.Get<LevelTileMap>();
+        var localPos = tileMap.MapToWorld(startTile);
+        var globalPos = tileMap.ToGlobal(localPos);
+        GlobalPosition = globalPos;
     }
 
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         var velocity = Vector2.Zero;
 
@@ -25,7 +30,6 @@ public class Player : Area2D
         }
 
         velocity *= speed;
-
-        Position += velocity * delta;
+        MoveAndSlide(velocity);
     }
 }
