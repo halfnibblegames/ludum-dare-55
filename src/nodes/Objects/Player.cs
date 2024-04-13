@@ -7,6 +7,7 @@ public class Player : KinematicBody2D
 {
     [Export] private float speed = 100;
 
+    private float madness;
     private ISpirit? currentSpirit;
 
     public override void _Ready()
@@ -20,11 +21,14 @@ public class Player : KinematicBody2D
 
     public override void _Process(float delta)
     {
+        madness += delta * (currentSpirit?.MadnessPerSecond ?? 0);
+
         if (!Input.IsActionJustPressed("summon_spirit")) return;
 
         if (currentSpirit is null)
         {
             currentSpirit = new PhaseSpirit();
+            madness += currentSpirit.InitialMadness;
             currentSpirit.Begin(this);
         }
         else

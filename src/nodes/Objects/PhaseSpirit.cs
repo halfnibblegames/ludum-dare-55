@@ -4,6 +4,9 @@ namespace HalfNibbleGame.Objects;
 
 public class PhaseSpirit : ISpirit
 {
+    public float InitialMadness { get; } = 20;
+    public float MadnessPerSecond { get; } = 10;
+
     private Color oldColor;
 
     public void Begin(Player player)
