@@ -12,8 +12,7 @@ public class Host : Actor
     [Export] private float speed = 100;
 
     protected override float Speed => speed;
-
-    public float Madness { get; private set; }
+    public float Madness { get; set; }
     
     private float summoningTimeout = 0.0f;
     
@@ -31,7 +30,6 @@ public class Host : Actor
     public override void _Process(float delta)
     {
         base._Process(delta);
-
         
         if (summoningTimeout > 0.0f)
         {

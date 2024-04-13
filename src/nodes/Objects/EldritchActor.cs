@@ -7,6 +7,8 @@ namespace HalfNibbleGame.Objects;
 public abstract class EldritchActor : Actor
 {
     private Host host = null!;
+    protected float MadnessPerMinute = 10;
+    public float SummoningMadness = 20;
 
     public override void _Ready()
     {
@@ -19,7 +21,8 @@ public abstract class EldritchActor : Actor
         base._Process(delta);
 
         if (!IsActive) return;
-
+        
+        host.Madness += MadnessPerMinute * delta;
         if (Input.IsActionJustPressed("return_to_host"))
         {
             Global.Services.Get<WorldManager>().TryReturnToHost();

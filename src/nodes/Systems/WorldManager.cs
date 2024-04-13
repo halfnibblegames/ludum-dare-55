@@ -97,7 +97,7 @@ public class WorldManager : Node2D
 
         // TODO: allow other forms
         var scene = Global.Prefabs.Imp;
-        if (scene?.Instance() is not Actor actor)
+        if (scene?.Instance() is not EldritchActor actor)
         {
             GD.PrintErr("Failed to instantiate summoned form.");
             return;
@@ -105,6 +105,8 @@ public class WorldManager : Node2D
 
         GetParent().AddChild(actor);
         summonedForms.Add(actor);
+
+        Global.Services.Get<Host>().Madness += actor.SummoningMadness;
 
         actor.Reset(tile, currentLevel.TileMap);
         activateActor(actor);
