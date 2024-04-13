@@ -65,6 +65,7 @@ public abstract class Actor : KinematicBody2D
         var animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
         var newAnimation = CalculateAnimation();
         animatedSprite.Animation = newAnimation;
+        animatedSprite.Playing = true;
 
         animatedSprite.FlipH = lastShouldBeMirrored = checkIfSpriteShouldBeMirrored();
     }
