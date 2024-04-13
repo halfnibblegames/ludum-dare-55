@@ -30,7 +30,8 @@ public class WorldManager : Node2D
 
     public override void _Process(float delta)
     {
-        if (Input.IsActionJustPressed("kill_player"))
+        // TODO: play death animation
+        if (host.Madness >= host.MadnessCap || Input.IsActionJustPressed("kill_player"))
         {
             resetLevel();
             return;
