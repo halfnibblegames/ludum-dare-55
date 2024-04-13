@@ -16,7 +16,7 @@ public class Host : Actor
     public float Madness { get; set; }
     public float MadnessCap => 200;
     
-    private float summoningTimeout = 0.0f;
+    private float summoningTimeout;
     
     public override void _Ready()
     {
@@ -47,7 +47,9 @@ public class Host : Actor
         }
 
         if (!IsActive) return;
-            
+
+        Madness = 0;
+
         if (Input.IsActionJustPressed("summon_imp"))
         {
             Suspend();
