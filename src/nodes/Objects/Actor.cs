@@ -24,13 +24,6 @@ public abstract class Actor : KinematicBody2D
         var globalPos = tileMap.ToGlobal(localPos);
         GlobalPosition = globalPos;
 
-        var camera = GetNode<ShakeCamera>("ShakeCamera");
-        camera.LimitLeft = (int) tileMap.GetUsedRect().Position.x;
-        camera.LimitTop = (int) tileMap.GetUsedRect().Position.y;
-        camera.LimitRight = (int) (tileMap.GetUsedRect().End.x * tileMap.CellSize.x);
-        camera.LimitBottom = (int) (tileMap.GetUsedRect().End.y * tileMap.CellSize.y);
-        camera.ResetSmoothing();
-
         OnReset();
     }
 
@@ -39,9 +32,6 @@ public abstract class Actor : KinematicBody2D
     public void MakeActive()
     {
         if (IsActive) return;
-
-        var camera = GetNode<ShakeCamera>("ShakeCamera");
-        camera.MakeCurrent();
 
         IsActive = true;
     }

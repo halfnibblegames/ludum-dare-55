@@ -10,12 +10,14 @@ public class Summons : Node2D
 {
     private readonly List<Actor> summonedForms = new();
 
+    private Camera2D camera = null!;
     private Player player = null!;
     private Actor? currentActor;
     private Level? currentLevel;
 
     public override void _Ready()
     {
+        camera = Global.Services.Get<ShakeCamera>();
         player = Global.Services.Get<Player>();
         currentLevel = GetNodeOrNull<Level>("SandboxLevel");
 
@@ -25,6 +27,8 @@ public class Summons : Node2D
 
     public override void _Process(float delta)
     {
+        camera.Position = currentActor?.Position ?? camera.Position;
+
         if (Input.IsActionJustPressed("kill_player"))
         {
             resetLevel();
@@ -33,6 +37,8 @@ public class Summons : Node2D
 
     private void resetLevel()
     {
+        if (currentLevel is null) throw new InvalidOperationException();
+
         foreach (var form in summonedForms)
         {
             form.Banish();
@@ -40,7 +46,13 @@ public class Summons : Node2D
         summonedForms.Clear();
         currentActor = null;
 
+        camera.LimitLeft = (int) currentLevel.TileMap.GetUsedRect().Position.x;
+        camera.LimitTop = (int) currentLevel.TileMap.GetUsedRect().Position.y;
+        camera.LimitRight = (int) (currentLevel.TileMap.GetUsedRect().End.x * currentLevel.TileMap.CellSize.x);
+        camera.LimitBottom = (int) (currentLevel.TileMap.GetUsedRect().End.y * currentLevel.TileMap.CellSize.y);
+
         resetPlayerForLevel();
+        camera.ResetSmoothing();
     }
 
     private void resetPlayerForLevel()
@@ -75,5 +87,13 @@ public class Summons : Node2D
         currentActor?.Suspend();
         actor.MakeActive();
         currentActor = actor;
+        reparentCamera(actor);
+    }
+
+    private void reparentCamera(Actor newParent)
+    {
+        // var currParent = camera.GetParent();
+        // currParent.RemoveChild(camera);
+        // newParent.AddChild(camera);
     }
 }
