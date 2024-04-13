@@ -31,6 +31,7 @@ public class WorldLoader : Node2D
 
         var attributes = currentLevel.GetNode<LevelAttributes>("LevelAttributes");
         var tileMap = currentLevel.GetNode<LevelTileMap>("TileMap");
-        player.Reset(attributes, tileMap);
+        player.Reset(attributes.StartTile, tileMap);
+        player.MakeActive(true);
     }
 }

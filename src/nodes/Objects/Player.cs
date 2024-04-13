@@ -3,11 +3,13 @@ using HalfNibbleGame.Autoload;
 
 namespace HalfNibbleGame.Objects;
 
-public class Player : KinematicBody2D
+public class Player : Actor
 {
     public const double MaxMadness = 200;
 
     [Export] private float speed = 100;
+
+    protected override float Speed => speed;
 
     public float Madness { get; private set; }
     public ISpirit? CurrentSpirit { get; private set; }
@@ -17,20 +19,10 @@ public class Player : KinematicBody2D
         Global.Services.ProvideInScene(this);
     }
 
-    public void Reset(LevelAttributes attributes, TileMap tileMap)
+    protected override void OnReset()
     {
+        base.OnReset();
         Madness = 0;
-
-        var localPos = tileMap.MapToWorld(attributes.StartTile);
-        var globalPos = tileMap.ToGlobal(localPos);
-        GlobalPosition = globalPos;
-
-        var camera = GetNode<ShakeCamera>("ShakeCamera");
-        camera.LimitLeft = (int) tileMap.GetUsedRect().Position.x;
-        camera.LimitTop = (int) tileMap.GetUsedRect().Position.y;
-        camera.LimitRight = (int) (tileMap.GetUsedRect().End.x * tileMap.CellSize.x);
-        camera.LimitBottom = (int) (tileMap.GetUsedRect().End.y * tileMap.CellSize.y);
-        camera.ResetSmoothing();
     }
 
     public override void _Process(float delta)
@@ -50,22 +42,5 @@ public class Player : KinematicBody2D
             CurrentSpirit.End(this);
             CurrentSpirit = null;
         }
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        var velocity = Vector2.Zero;
-
-        velocity.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
-        velocity.y = Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");
-
-        // For keyboard input, we need to normalize the vector so diagonal movement isn't faster
-        if (velocity.LengthSquared() >= 1)
-        {
-            velocity = velocity.Normalized();
-        }
-
-        velocity *= speed;
-        MoveAndSlide(velocity);
     }
 }
