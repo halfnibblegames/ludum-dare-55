@@ -91,7 +91,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )
 animation = "idle"
-playing = true
 __meta__ = {
 "_aseprite_wizard_config_": {
 "layer": "",

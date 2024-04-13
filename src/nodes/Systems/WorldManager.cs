@@ -51,8 +51,8 @@ public class WorldManager : Node2D
         var hostPosition = host.Position;
         var actorPosition = currentActor.Position;
         var difference = actorPosition - hostPosition;
-        if (difference.x > worldSize.x - 2 * minCameraDistanceToEdge ||
-            difference.y > worldSize.y - 2 * minCameraDistanceToEdge)
+        if (Mathf.Abs(difference.x) > worldSize.x - 2 * minCameraDistanceToEdge ||
+            Mathf.Abs(difference.y) > worldSize.y - 2 * minCameraDistanceToEdge)
         {
             camera.Position = actorPosition;
             return;

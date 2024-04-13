@@ -10,9 +10,14 @@ public abstract class Actor : KinematicBody2D
     protected abstract float Speed { get; }
     
     private Vector2 velocity;
-    private string lastAnimation;
     private bool lastShouldBeMirrored;
-    
+
+    public override void _Ready()
+    {
+        base._Ready();
+        GetNode<AnimatedSprite>("AnimatedSprite").Playing = true;
+    }
+
     protected Vector2 FindCurrentTile()
     {
         if (tileMap is null) throw new InvalidOperationException();
@@ -59,10 +64,7 @@ public abstract class Actor : KinematicBody2D
 
         var animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
         var newAnimation = CalculateAnimation();
-        if (newAnimation != lastAnimation)
-        {
-            animatedSprite.Animation = newAnimation;
-        }
+        animatedSprite.Animation = newAnimation;
 
         animatedSprite.FlipH = lastShouldBeMirrored = checkIfSpriteShouldBeMirrored();
     }

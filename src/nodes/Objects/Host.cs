@@ -14,7 +14,7 @@ public class Host : Actor
     protected override float Speed => speed;
 
     public float Madness { get; set; }
-    public float MadnessCap => 200;
+    public float MadnessCap => madnessCap;
     
     private float summoningTimeout;
     
