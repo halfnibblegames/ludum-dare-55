@@ -17,6 +17,12 @@ public class Player : KinematicBody2D
         var localPos = tileMap.MapToWorld(startTile);
         var globalPos = tileMap.ToGlobal(localPos);
         GlobalPosition = globalPos;
+
+        var camera = GetNode<ShakeCamera>("ShakeCamera");
+        camera.LimitLeft = (int) tileMap.GetUsedRect().Position.x;
+        camera.LimitTop = (int) tileMap.GetUsedRect().Position.y;
+        camera.LimitRight = (int) (tileMap.GetUsedRect().End.x * tileMap.CellSize.x);
+        camera.LimitBottom = (int) (tileMap.GetUsedRect().End.y * tileMap.CellSize.y);
     }
 
     public override void _Process(float delta)
