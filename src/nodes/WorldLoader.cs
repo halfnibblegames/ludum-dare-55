@@ -17,11 +17,17 @@ public class WorldLoader : Node2D
         if (currentLevel is not null) resetPlayerForLevel();
     }
 
+    public override void _Process(float delta)
+    {
+        if (Input.IsActionJustPressed("kill_player"))
+        {
+            resetPlayerForLevel();
+        }
+    }
+
     private void resetPlayerForLevel()
     {
         if (currentLevel is null) throw new InvalidOperationException();
-
-        GD.Print("Resetting player for level");
 
         var attributes = currentLevel.GetNode<LevelAttributes>("LevelAttributes");
         var tileMap = currentLevel.GetNode<LevelTileMap>("TileMap");
