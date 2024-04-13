@@ -52,6 +52,7 @@ public class WorldManager : Node2D
         camera.LimitBottom = (int) (currentLevel.TileMap.GetUsedRect().End.y * currentLevel.TileMap.CellSize.y);
 
         resetPlayerForLevel();
+        camera.Position = host.Position;
         camera.ResetSmoothing();
     }
 
@@ -82,18 +83,24 @@ public class WorldManager : Node2D
         activateActor(actor);
     }
 
+    public void TryReturnToHost()
+    {
+        if (currentActor is null || summonedForms.Count == 0) return;
+        if (currentActor == host) throw new InvalidOperationException();
+        if (currentActor != summonedForms[^1]) throw new InvalidOperationException();
+
+        var targetActor = summonedForms.Count > 1 ? summonedForms[^2] : host;
+        // TODO: check line of sight
+        var oldActor = currentActor;
+        activateActor(targetActor);
+        oldActor.Banish();
+        summonedForms.RemoveAt(summonedForms.Count - 1);
+    }
+
     private void activateActor(Actor actor)
     {
         currentActor?.Suspend();
         actor.MakeActive();
         currentActor = actor;
-        reparentCamera(actor);
-    }
-
-    private void reparentCamera(Actor newParent)
-    {
-        // var currParent = camera.GetParent();
-        // currParent.RemoveChild(camera);
-        // newParent.AddChild(camera);
     }
 }
