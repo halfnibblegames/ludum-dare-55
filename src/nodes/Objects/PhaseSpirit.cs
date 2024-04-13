@@ -6,6 +6,7 @@ public class PhaseSpirit : ISpirit
 {
     public float InitialMadness { get; } = 20;
     public float MadnessPerSecond { get; } = 10;
+    public Color Color { get; } = Colors.Aqua;
 
     private Color oldColor;
 
@@ -13,7 +14,7 @@ public class PhaseSpirit : ISpirit
     {
         var colorRect = player.GetNode<ColorRect>("ColorRect");
         oldColor = colorRect.Color;
-        colorRect.Color = Colors.Aqua;
+        colorRect.Color = Color;
     }
 
     public void End(Player player)
