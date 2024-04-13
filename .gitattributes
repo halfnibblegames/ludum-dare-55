@@ -11,11 +11,11 @@
 # Rider files
 *.csproj.DotSettings text eol=lf
 
-# Godot files
-*.import   text
-*.godot    text
-*.tres     text
-*.tscn     text
+# Godot files (Godot always uses lf)
+*.import   text eol=lf
+*.godot    text eol=lf
+*.tres     text eol=lf
+*.tscn     text eol=lf
 
 # Scripts & config
 *.json     text
