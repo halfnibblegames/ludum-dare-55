@@ -8,6 +8,9 @@ namespace HalfNibbleGame.Systems;
 
 public class WorldManager : Node2D
 {
+    private static readonly Vector2 worldSize = new(320, 180);
+    private const float minCameraDistanceToEdge = 48;
+
     private readonly List<Actor> summonedForms = new();
 
     private Camera2D camera = null!;
@@ -27,12 +30,36 @@ public class WorldManager : Node2D
 
     public override void _Process(float delta)
     {
-        camera.Position = currentActor?.Position ?? camera.Position;
-
         if (Input.IsActionJustPressed("kill_player"))
         {
             resetLevel();
+            return;
         }
+
+        updateCameraPosition();
+    }
+
+    private void updateCameraPosition()
+    {
+        if (currentActor is null) return;
+        if (currentActor == host)
+        {
+            camera.Position = host.Position;
+            return;
+        }
+
+        var hostPosition = host.Position;
+        var actorPosition = currentActor.Position;
+        var difference = actorPosition - hostPosition;
+        if (difference.x > worldSize.x - 2 * minCameraDistanceToEdge ||
+            difference.y > worldSize.y - 2 * minCameraDistanceToEdge)
+        {
+            camera.Position = actorPosition;
+            return;
+        }
+
+        var average = hostPosition + 0.5f * difference;
+        camera.Position = average;
     }
 
     private void resetLevel()

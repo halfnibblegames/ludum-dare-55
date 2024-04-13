@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 current = true
 limit_smoothed = true
 smoothing_enabled = true
-smoothing_speed = 12.0
+smoothing_speed = 8.0
 script = ExtResource( 3 )
 
 [node name="Host" parent="." instance=ExtResource( 1 )]
