@@ -39,9 +39,9 @@ public class DialogService : Control
 
         Global.Services.ProvidePersistent(this);
 
-        portrait = GetNode<TextureRect>(" Portrait");
-        dialogTextBox = GetNode<Label>(" DialogText");
-        speakerName = GetNode<Label>(" SpeakerName");
+        portrait = GetNode<TextureRect>("Portrait");
+        dialogTextBox = GetNode<Label>("DialogText");
+        speakerName = GetNode<Label>("SpeakerName");
         tween = GetNode<Tween>("Tween");
     }
 
