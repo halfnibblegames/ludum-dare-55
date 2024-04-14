@@ -43,24 +43,24 @@ public class MadnessMeter : TextureRect
         tween.InterpolateProperty(
             @object: madnessMeter,
             property: "rect_position:y",
-            initialVal: meterShouldBeVisible ? 720 : 616,
-            finalVal: meterShouldBeVisible ? 616 : 720,
+            initialVal: meterShouldBeVisible ? -104 : 16,
+            finalVal: meterShouldBeVisible ? 16 : -104,
             duration: barAnimationDuration
         );
 
         tween.InterpolateProperty(
             @object: playerPortrait,
             property: "rect_position:y",
-            initialVal: meterShouldBeVisible ? 724 : 620,
-            finalVal: meterShouldBeVisible ? 620 : 724 ,
+            initialVal: meterShouldBeVisible ? -108 : 20,
+            finalVal: meterShouldBeVisible ? 20 : -108 ,
             duration: barAnimationDuration
         );
 
         tween.InterpolateProperty(
             @object: madnessBar,
             property: "rect_position:y",
-            initialVal: meterShouldBeVisible ? 772 : 668,
-            finalVal: meterShouldBeVisible ? 668 : 772,
+            initialVal: meterShouldBeVisible ? -156 : 68,
+            finalVal: meterShouldBeVisible ? 68 : -156,
             duration: barAnimationDuration
         );
 
