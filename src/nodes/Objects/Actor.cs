@@ -6,7 +6,7 @@ namespace HalfNibbleGame.Objects;
 public abstract class Actor : KinematicBody2D
 {
     private TileMap? tileMap;
-    protected bool IsActive { get; private set; }
+    public bool IsActive { get; private set; }
     protected abstract float Speed { get; }
     
     private Vector2 velocity;
