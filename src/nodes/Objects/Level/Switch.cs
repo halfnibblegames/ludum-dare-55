@@ -2,9 +2,10 @@
 
 namespace HalfNibbleGame.Objects.Level;
 
-public class Switch : StaticBody2D
+public class Switch : StaticBody2D, IResettable
 {
-    [Export] public SwitchState State = SwitchState.Off;
+    [Export] public SwitchState InitialState = SwitchState.Off;
+    private SwitchState state;
 
     [Signal] public delegate void SwitchStateChanged(SwitchState newState);
 
@@ -12,12 +13,19 @@ public class Switch : StaticBody2D
     {
         base._Ready();
         this.MakeInteractable(this, nameof(onActivated));
+        AddToGroup(Constants.LevelStateGroup);
+        Reset();
+    }
+
+    public void Reset()
+    {
+        state = InitialState;
     }
 
     private void onActivated(Actor actor)
     {
-        State = State == SwitchState.Off ? SwitchState.On : SwitchState.Off;
-        EmitSignal(nameof(SwitchStateChanged), State);
+        state = state == SwitchState.Off ? SwitchState.On : SwitchState.Off;
+        EmitSignal(nameof(SwitchStateChanged), state);
     }
 }
 
