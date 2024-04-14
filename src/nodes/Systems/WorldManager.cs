@@ -34,6 +34,18 @@ public class WorldManager : Node2D
         }
     }
 
+    public void LoadLevel(PackedScene scene)
+    {
+        if (currentLevel != null)
+        {
+            RemoveChild(currentLevel);
+        }
+
+        currentLevel = scene.Instance<Level>();
+        AddChild(currentLevel);
+        resetLevel();
+    }
+
     public override void _Process(float delta)
     {
         // TODO: play death animation
