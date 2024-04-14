@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Godot;
+using HalfNibbleGame.Objects.Level;
 
 namespace HalfNibbleGame.Objects;
 
@@ -11,6 +13,9 @@ public abstract class Actor : KinematicBody2D
     
     private Vector2 velocity;
     private bool lastShouldBeMirrored;
+
+    private Interactable? closestInteractable;
+    private RayCast2D? interactableRay;
 
     public override void _Ready()
     {
@@ -68,6 +73,46 @@ public abstract class Actor : KinematicBody2D
         animatedSprite.Playing = true;
 
         animatedSprite.FlipH = lastShouldBeMirrored = checkIfSpriteShouldBeMirrored();
+
+        if (!IsActive) return;
+
+        updateInteractableLineOfSight();
+
+        if (Input.IsActionJustPressed("interact") &&
+            closestInteractable is not null &&
+            closestInteractable.GlobalPosition.DistanceSquaredTo(GlobalPosition) < 16 * 16 &&
+            !(interactableRay?.IsColliding() ?? false))
+        {
+            closestInteractable.Interact(this);
+        }
+    }
+
+    private void updateInteractableLineOfSight()
+    {
+        closestInteractable = GetTree().GetNodesInGroup(Constants.InteractiveGroup)
+            .OfType<Interactable>()
+            .Select(interactable => (interactable, interactable.GlobalPosition.DistanceSquaredTo(GlobalPosition)))
+            .OrderBy(tuple => tuple.Item2)
+            .Select(tuple => tuple.Item1)
+            .FirstOrDefault();
+
+        if (closestInteractable is null)
+        {
+            interactableRay?.QueueFree();
+            interactableRay = null;
+            return;
+        }
+
+        if (interactableRay is null)
+        {
+            interactableRay = new RayCast2D();
+            interactableRay.Enabled = true;
+            interactableRay.ExcludeParent = true;
+            AddChild(interactableRay);
+        }
+
+        interactableRay.AddException(closestInteractable.GetParent());
+        interactableRay.CastTo = (closestInteractable.GlobalPosition - GlobalPosition);
     }
 
     private bool checkIfSpriteShouldBeMirrored()
