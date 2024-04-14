@@ -133,12 +133,26 @@ public class DialogService : Control
             duration: dialogBoxDisplayDuration
         );
         tween.Start();
+
+        if (!cinematicIsAutoSkippable)
+        {
+            Global.Services.Get<Host>().BlockControl();
+        }
     }
 
     [UsedImplicitly]
     public void OnAnimationCompleted(object @object, NodePath node)
     {
         isVisible = isDisplaying;
+
+        if (isVisible || cinematicIsAutoSkippable)
+            return;
+        
+        var host = Global.Services.Get<Host>();
+        if (host.IsActive)
+        {
+            host.ResumeControl();
+        }
     }
 
     public void ClearAllDialog()
