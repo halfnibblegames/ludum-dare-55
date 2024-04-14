@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/post_process.gdshader" type="Shader" id=2]
 [ext_resource path="res://assets/hud_madness_meter.png" type="Texture" id=3]
 [ext_resource path="res://assets/imp_portrait.png" type="Texture" id=4]
 [ext_resource path="res://nodes/controls/MadnessMeter.cs" type="Script" id=5]
+[ext_resource path="res://scenes/Controls/DialogService.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
@@ -50,11 +51,20 @@ margin_right = 856.0
 margin_bottom = 796.0
 color = Color( 0.243137, 0.203922, 0.286275, 1 )
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DialogueBox" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = 290.0
+margin_top = 720.0
+margin_right = 290.0
+margin_bottom = 720.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Tween" type="Tween" parent="."]

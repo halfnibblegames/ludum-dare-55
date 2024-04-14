@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://nodes/Controls/DialogService.cs" type="Script" id=1]
+[ext_resource path="res://assets/dialogue_frame.png" type="Texture" id=2]
+[ext_resource path="res://assets/imp_portrait.png" type="Texture" id=3]
+[ext_resource path="res://assets/GothicPixels.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/PixelifySans.tres" type="DynamicFont" id=5]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="DialogService" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Portrait" type="TextureRect" parent="."]
+margin_left = 28.0
+margin_top = 32.0
+margin_right = 68.0
+margin_bottom = 72.0
+rect_scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="DialogBox" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="DialogText" type="Label" parent="."]
+margin_left = 120.0
+margin_top = 60.0
+margin_right = 681.0
+margin_bottom = 115.0
+custom_fonts/font = ExtResource( 5 )
+text = "Aight boys imma head out (into this dude's body lmao)."
+autowrap = true
+
+[node name="SpeakerName" type="Label" parent="."]
+margin_left = 120.0
+margin_top = 35.0
+margin_right = 165.0
+margin_bottom = 49.0
+theme = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.588235, 0.588235, 1 )
+custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 2 )
+text = "Imp"
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="Tween" to="." method="OnAnimationCompleted"]
