@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://nodes/Objects/Level/RadiantAnomaly.cs" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/arcane_force_field.png-287ee874e74f25cd85bd8bc370ed4cce.stex"
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = SubResource( 2 )
+region = Rect2( 0, 0, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = SubResource( 2 )
+region = Rect2( 19, 0, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = SubResource( 2 )
+region = Rect2( 38, 0, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = SubResource( 2 )
+region = Rect2( 0, 19, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = SubResource( 2 )
+region = Rect2( 19, 19, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = SubResource( 2 )
+region = Rect2( 38, 19, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = SubResource( 2 )
+region = Rect2( 0, 38, 19, 19 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = SubResource( 2 )
+region = Rect2( 19, 38, 19, 19 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "idle",
+"speed": 17.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="RadiantAnomaly" type="StaticBody2D"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 11 )
+animation = "idle"
+__meta__ = {
+"_aseprite_wizard_config_": {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://assets",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"source": "res://assets/arcane_force_field.aseprite"
+}
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

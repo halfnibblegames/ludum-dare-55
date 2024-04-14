@@ -84,7 +84,7 @@ public abstract class Actor : KinematicBody2D
 
         if (Input.IsActionJustPressed("interact") &&
             closestInteractable is not null &&
-            closestInteractable.GlobalPosition.DistanceSquaredTo(GlobalPosition) < 16 * 16 &&
+            closestInteractable.GlobalPosition.DistanceSquaredTo(GlobalPosition) < 20 * 20 &&
             !(interactableRay?.IsColliding() ?? false))
         {
             closestInteractable.Interact(this);

@@ -4,7 +4,7 @@ using HalfNibbleGame.Systems;
 
 namespace HalfNibbleGame.Objects.Level;
 
-public class Trapdoor : DetectingArea2D
+public class Trapdoor : DetectingArea2D, ILevelResettable
 {
     private const string idleAnimation = "idle";
     private const string openAnimation = "Activation";
@@ -36,6 +36,11 @@ public class Trapdoor : DetectingArea2D
         if (capturedActor is null) return;
 
         Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.KillPlayer));
+        Reset();
+    }
+
+    public void Reset()
+    {
         capturedActor = null;
         sprite.Animation = idleAnimation;
         sprite.Frame = 0;
