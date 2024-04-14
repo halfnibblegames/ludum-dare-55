@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Godot;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Objects;
-using HalfNibbleGame.Objects.Level;
 
 namespace HalfNibbleGame.Systems;
 
@@ -18,6 +17,8 @@ public class WorldManager : Node2D
     private Host host = null!;
     private Actor? currentActor;
     private Level? currentLevel;
+
+    [Signal] public delegate void LevelReset();
 
     public override void _Ready()
     {
@@ -112,7 +113,10 @@ public class WorldManager : Node2D
         camera.Position = host.Position;
         camera.ResetSmoothing();
 
-        GetTree().CallGroup(Constants.LevelStateGroup, nameof(IResettable.Reset));
+        foreach (var key in Enum.GetValues(typeof(ChannelKey)))
+        {
+            this.UpdateChannel((ChannelKey) key, ChannelState.Off);
+        }
     }
 
     private void resetPlayerForLevel()

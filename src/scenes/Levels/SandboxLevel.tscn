@@ -26,9 +26,11 @@ tile_data = PoolIntArray( 65536, 0, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65
 
 [node name="Door" parent="." instance=ExtResource( 5 )]
 position = Vector2( 168, 200 )
+Channel = 1
 
 [node name="Switch" parent="." instance=ExtResource( 3 )]
 position = Vector2( 176, 128 )
+Channel = 1
 
 [node name="Exit" parent="." instance=ExtResource( 6 )]
 position = Vector2( 32, 48 )
@@ -36,5 +38,3 @@ NextLevelScene = ExtResource( 7 )
 
 [node name="Trapdoor" parent="." instance=ExtResource( 8 )]
 position = Vector2( 168, 56 )
-
-[connection signal="SwitchStateChanged" from="Switch" to="Door" method="ToggleDoorState"]

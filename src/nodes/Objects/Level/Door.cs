@@ -1,10 +1,11 @@
 ﻿using Godot;
-using JetBrains.Annotations;
+using HalfNibbleGame.Systems;
 
 namespace HalfNibbleGame.Objects.Level;
 
-public class Door : StaticBody2D, IResettable
+public class Door : StaticBody2D, ILevelState
 {
+    [Export] public ChannelKey Channel;
     [Export] public DoorState InitialState = DoorState.Closed;
     private DoorState state;
 
@@ -12,20 +13,27 @@ public class Door : StaticBody2D, IResettable
     {
         base._Ready();
         AddToGroup(Constants.LevelStateGroup);
-        Reset();
-    }
 
-    public void Reset()
-    {
         state = InitialState;
         applyStateToCollision();
     }
 
-    [UsedImplicitly]
-    public void ToggleDoorState(SwitchState switchState)
+    public void ConsumeChange(ChannelKey key, ChannelState newState)
     {
-        state = state == DoorState.Closed ? DoorState.Open : DoorState.Closed;
+        if (key != Channel) return;
+
+        state = toDoorState(newState);
         applyStateToCollision();
+    }
+
+    private DoorState toDoorState(ChannelState channelState)
+    {
+        if (InitialState == DoorState.Closed)
+        {
+            return channelState == ChannelState.On ? DoorState.Open : DoorState.Closed;
+        }
+
+        return channelState == ChannelState.On ? DoorState.Closed : DoorState.Open;
     }
 
     private void applyStateToCollision()

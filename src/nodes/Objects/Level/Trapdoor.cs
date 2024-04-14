@@ -4,7 +4,7 @@ using HalfNibbleGame.Systems;
 
 namespace HalfNibbleGame.Objects.Level;
 
-public class Trapdoor : DetectingArea2D, IResettable
+public class Trapdoor : DetectingArea2D
 {
     private const string idleAnimation = "idle";
     private const string openAnimation = "Activation";
@@ -20,15 +20,6 @@ public class Trapdoor : DetectingArea2D, IResettable
         sprite.Connect("animation_finished", this, nameof(onAnimationFinished));
     }
 
-    public void Reset()
-    {
-        capturedActor = null;
-
-        sprite.Animation = idleAnimation;
-        sprite.Frame = 0;
-        sprite.Play();
-    }
-
     protected override void OnActorEntered(Actor actor)
     {
         if (actor is Imp) return;
@@ -42,9 +33,12 @@ public class Trapdoor : DetectingArea2D, IResettable
 
     private void onAnimationFinished()
     {
-        if (capturedActor is not null)
-        {
-            Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.KillPlayer));
-        }
+        if (capturedActor is null) return;
+
+        Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.KillPlayer));
+        capturedActor = null;
+        sprite.Animation = idleAnimation;
+        sprite.Frame = 0;
+        sprite.Play();
     }
 }

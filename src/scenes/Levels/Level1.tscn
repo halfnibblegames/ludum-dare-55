@@ -27,21 +27,31 @@ position = Vector2( 160, 40 )
 
 [node name="DoorLeft" parent="." instance=ExtResource( 5 )]
 position = Vector2( 88, 120 )
+Channel = 1
 
 [node name="DoorRight" parent="." instance=ExtResource( 5 )]
 position = Vector2( 232, 120 )
+Channel = 1
 
 [node name="DoorSide" parent="." instance=ExtResource( 5 )]
 position = Vector2( 184, 88 )
+Channel = 1
+InitialState = 0
 
 [node name="DoorDoubleL" parent="." instance=ExtResource( 5 )]
 position = Vector2( 152, 120 )
+Channel = 1
+InitialState = 0
 
 [node name="DoorDoubleR" parent="." instance=ExtResource( 5 )]
 position = Vector2( 168, 120 )
+Channel = 1
+InitialState = 0
 
 [node name="SwitchLeft" parent="." instance=ExtResource( 3 )]
 position = Vector2( 64, 64 )
+Channel = 2
 
 [node name="SwitchRight" parent="." instance=ExtResource( 3 )]
 position = Vector2( 256, 64 )
+Channel = 1
