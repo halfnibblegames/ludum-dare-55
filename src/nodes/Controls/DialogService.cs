@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using Godot;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Objects;
@@ -11,6 +12,19 @@ public enum Speaker
     Imp,
     Clhubhukhapuslhamazarathoka,
     Unknown
+}
+
+public static class SpeakerExtensions
+{
+    public static Texture Portrait(this Speaker speaker)
+        => speaker switch
+        {
+            Speaker.Host => Global.Prefabs.HostPortrait,
+            Speaker.Imp => Global.Prefabs.ImpPortrait,
+            Speaker.Clhubhukhapuslhamazarathoka => Global.Prefabs.HorrorPortrait,
+            Speaker.Unknown => Global.Prefabs.UnknownPortrait,
+            _ => throw new ArgumentOutOfRangeException(nameof(speaker), speaker, null)
+        };
 }
 
 public sealed record Dialog(
@@ -90,20 +104,10 @@ public class DialogService : Control
             dialogTextBox.PercentVisible = 0.0f;
             currentDialog = dialogQueue.Dequeue();
 
-            var currentSpeakerName = currentDialog.Speaker.ToString();
-
-            var image = new Image();
-            var error = image.Load($"res://assets/{currentSpeakerName.ToLowerInvariant()}_portrait.png");
-            if (error == Error.Ok)
-            {
-                var texture = new ImageTexture();
-                texture.CreateFromImage(image);
-                portrait.Texture = texture;
-            }
-
+            portrait.Texture = currentDialog.Speaker.Portrait();
             dialogDurationInSeconds = (currentDialog.Text.Length / charactersPerSecond);
             dialogTextBox.Text = currentDialog.Text;
-            speakerName.Text = currentSpeakerName;
+            speakerName.Text = currentDialog.Speaker.ToString();
         }
         else
         {
