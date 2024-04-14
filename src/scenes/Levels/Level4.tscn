@@ -41,13 +41,13 @@ position = Vector2( 280, 56 )
 Channel = 2
 
 [node name="Trapdoor" parent="." instance=ExtResource( 4 )]
-position = Vector2( 88, 136 )
+position = Vector2( 96, 136 )
 
 [node name="Trapdoor2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 152, 136 )
+position = Vector2( 144, 136 )
 
 [node name="Trapdoor3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 200, 136 )
+position = Vector2( 208, 136 )
 
 [node name="Door2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 184, 104 )
@@ -58,4 +58,4 @@ position = Vector2( 232, 104 )
 Channel = 2
 
 [node name="RadiantAnomaly" parent="." instance=ExtResource( 6 )]
-position = Vector2( 168, 136 )
+position = Vector2( 164, 136 )
