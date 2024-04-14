@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://nodes/Autoload/Prefabs.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Objects/Imp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Levels/SandboxLevel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/imp_portrait.png" type="Texture" id=4]
+[ext_resource path="res://assets/clhubhukhapuslhamazarathoka_portrait.png" type="Texture" id=5]
+[ext_resource path="res://assets/unknown_portrait.png" type="Texture" id=6]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
 Sandbox = ExtResource( 3 )
 Imp = ExtResource( 2 )
+HorrorPortrait = ExtResource( 5 )
+HostPortrait = ExtResource( 6 )
+ImpPortrait = ExtResource( 4 )
+UnknownPortrait = ExtResource( 6 )
