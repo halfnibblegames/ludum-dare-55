@@ -34,7 +34,11 @@ public class MadnessMeter : TextureRect
         var tween = GetNode<Tween>("../Tween");
         var madnessMeter = GetNode<CanvasItem>("../MadnessMeter");
 
-        var playerPortrait = GetNode<CanvasItem>("../PlayerPortrait");
+        var playerPortrait = GetNode<TextureRect>("../PlayerPortrait");
+
+        // TODO: Figure out how to get the current eldritch actor.
+        // var texture = new ImageTexture { ResourcePath = currentEldritchActor.Portrait };
+        // playerPortrait.Texture = texture;
 
         tween.InterpolateProperty(
             @object: madnessMeter,

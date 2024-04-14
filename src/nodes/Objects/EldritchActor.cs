@@ -10,6 +10,7 @@ public abstract class EldritchActor : Actor
     private RayCast2D hostRay = null!;
     protected float MadnessPerMinute = 10;
     public float SummoningMadness = 20;
+    public string Portrait = "res://assets/imp_portrait.png";
 
     public bool CanSeeHost => !hostRay.IsColliding();
 
