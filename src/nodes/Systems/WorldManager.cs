@@ -113,11 +113,13 @@ public class WorldManager : Node2D
     {
         if (currentLevel is null) throw new InvalidOperationException();
 
-        host.Reset(currentLevel.StartTile, currentLevel.TileMap);
+        var startLocation = currentLevel.TileMap.MapToWorld(currentLevel.StartTile);
+        var globalPos = currentLevel.TileMap.ToGlobal(startLocation);
+        host.Reset(globalPos, currentLevel.TileMap);
         activateActor(host);
     }
 
-    public void SummonForm(Vector2 tile)
+    public void SummonForm(Vector2 location)
     {
         if (currentLevel is null) throw new InvalidOperationException();
 
@@ -134,7 +136,7 @@ public class WorldManager : Node2D
 
         Global.Services.Get<Host>().Madness += actor.SummoningMadness;
 
-        actor.Reset(tile, currentLevel.TileMap);
+        actor.Reset(location, currentLevel.TileMap);
         activateActor(actor);
     }
 

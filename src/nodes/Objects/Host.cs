@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Systems;
 
@@ -17,6 +18,7 @@ public class Host : Actor
     public float MadnessCap => madnessCap;
     
     private float summoningTimeout;
+    private Vector2 summonLocation;
     
     public override void _Ready()
     {
@@ -38,7 +40,7 @@ public class Host : Actor
             summoningTimeout -= delta;
             if (summoningTimeout <= 0.0f)
             {
-                Global.Services.Get<WorldManager>().SummonForm(FindCurrentTile() + Vector2.Right);
+                Global.Services.Get<WorldManager>().SummonForm(summonLocation);
             }
         }
         else
@@ -50,11 +52,28 @@ public class Host : Actor
 
         Madness = 0;
 
-        if (Input.IsActionJustPressed("summon_imp"))
+        if (Input.IsActionJustPressed("summon_imp") && tryChooseSummonLocation(out summonLocation))
         {
             Suspend();
             summoningTimeout = summoningDuration;
         }
+    }
+
+    private bool tryChooseSummonLocation(out Vector2 location)
+    {
+        location = GlobalPosition + SummonDirection * Vector2.Right * 16;
+        if (canSummonInLocation(location)) return true;
+        location = GlobalPosition + SummonDirection * Vector2.Left * 16;
+        if (canSummonInLocation(location)) return true;
+
+        location = default;
+        return false;
+    }
+
+    private bool canSummonInLocation(Vector2 location)
+    {
+        var collisions = GetWorld2d().DirectSpaceState.IntersectRay(GlobalPosition, location, new Array(this));
+        return collisions.Count == 0;
     }
 
     protected override string CalculateAnimation() 

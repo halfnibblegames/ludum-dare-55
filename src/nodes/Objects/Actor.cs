@@ -17,6 +17,8 @@ public abstract class Actor : KinematicBody2D
     private Interactable? closestInteractable;
     private RayCast2D? interactableRay;
 
+    protected int SummonDirection => lastShouldBeMirrored ? -1 : 1;
+
     public override void _Ready()
     {
         base._Ready();
@@ -30,14 +32,10 @@ public abstract class Actor : KinematicBody2D
     }
 
     // ReSharper disable once ParameterHidesMember
-    public void Reset(Vector2 tile, TileMap tileMap)
+    public void Reset(Vector2 globalPos, TileMap tileMap)
     {
         this.tileMap = tileMap;
-
-        var localPos = tileMap.MapToWorld(tile);
-        var globalPos = tileMap.ToGlobal(localPos);
         GlobalPosition = globalPos;
-
         OnReset();
     }
 
