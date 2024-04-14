@@ -3,50 +3,50 @@
 [ext_resource path="res://nodes/Objects/Host.cs" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6, 8 )
+extents = Vector2( 5, 8 )
 
 [sub_resource type="StreamTexture" id=2]
 load_path = "res://.import/host.png-9808f9432076b9f365d703fbf14c2bd5.stex"
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = SubResource( 2 )
-region = Rect2( 0, 0, 15, 19 )
+region = Rect2( 0, 0, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = SubResource( 2 )
-region = Rect2( 15, 0, 15, 19 )
+region = Rect2( 14, 0, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = SubResource( 2 )
-region = Rect2( 30, 0, 15, 19 )
+region = Rect2( 28, 0, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = SubResource( 2 )
-region = Rect2( 45, 0, 15, 19 )
+region = Rect2( 42, 0, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = SubResource( 2 )
-region = Rect2( 0, 19, 15, 19 )
+region = Rect2( 0, 19, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = SubResource( 2 )
-region = Rect2( 15, 19, 15, 19 )
+region = Rect2( 14, 19, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = SubResource( 2 )
-region = Rect2( 30, 19, 15, 19 )
+region = Rect2( 28, 19, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = SubResource( 2 )
-region = Rect2( 45, 19, 15, 19 )
+region = Rect2( 42, 19, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = SubResource( 2 )
-region = Rect2( 0, 38, 15, 19 )
+region = Rect2( 0, 38, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = SubResource( 2 )
-region = Rect2( 15, 38, 15, 19 )
+region = Rect2( 14, 38, 14, 19 )
 
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
