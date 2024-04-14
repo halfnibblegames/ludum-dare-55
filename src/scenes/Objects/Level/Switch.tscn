@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://nodes/Objects/Level/Switch.cs" type="Script" id=1]
 [ext_resource path="res://assets/crystal.png" type="Texture" id=2]
+[ext_resource path="res://nodes/Controls/ChannelDebugLabel.cs" type="Script" id=3]
+[ext_resource path="res://assets/Minimal5.tres" type="DynamicFont" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6, 6.5 )
@@ -16,3 +18,12 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="DebugLabel" type="Label" parent="."]
+margin_left = 3.0
+margin_top = -16.0
+margin_right = 12.0
+margin_bottom = -5.0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+script = ExtResource( 3 )
