@@ -103,6 +103,10 @@ public class WorldManager : Node2D
         }
         summonedForms.Clear();
         currentActor = null;
+        if (Global.Services.TryGet<DialogService>(out var dialogService))
+        {
+            dialogService.ClearAllDialog();
+        }
 
         camera.LimitLeft = (int) currentLevel.TileMap.GetUsedRect().Position.x;
         camera.LimitTop = (int) currentLevel.TileMap.GetUsedRect().Position.y;
