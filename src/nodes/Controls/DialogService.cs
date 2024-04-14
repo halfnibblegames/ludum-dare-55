@@ -19,12 +19,13 @@ public class DialogService : Control
 {
     private const int visibleYPosition = 556;
     private const int invisibleYPosition = 720;
-    private const float dialogBoxDisplayDuration = 0.4f;
-    private const float textDisplayDuration = 1.0f;
+    private const float dialogBoxDisplayDuration = 0.15f;
+    private const float charactersPerSecond = 30.0f;
 
     private readonly Queue<Dialog> dialogQueue = new();
     private Dialog? currentDialog;
     private float elapsedDialogTimer;
+    private float dialogDurationInSeconds;
     private bool isDisplaying;
     private bool isVisible;
 
@@ -37,7 +38,7 @@ public class DialogService : Control
     {
         base._Ready();
 
-        Global.Services.ProvidePersistent(this);
+        Global.Services.ProvideInScene(this);
 
         portrait = GetNode<TextureRect>("Portrait");
         dialogTextBox = GetNode<Label>("DialogText");
@@ -54,9 +55,9 @@ public class DialogService : Control
 
         if (Input.IsActionJustPressed("ui_accept"))
         {
-            if (elapsedDialogTimer < textDisplayDuration)
+            if (elapsedDialogTimer < dialogDurationInSeconds)
             {
-                elapsedDialogTimer = textDisplayDuration;
+                elapsedDialogTimer = dialogDurationInSeconds;
             }
             else
             {
@@ -66,14 +67,18 @@ public class DialogService : Control
 
         if (currentDialog is not null)
         {
-            elapsedDialogTimer = Mathf.Min(textDisplayDuration, elapsedDialogTimer + delta);
-            dialogTextBox.PercentVisible = elapsedDialogTimer / textDisplayDuration;
+            elapsedDialogTimer = Mathf.Min(dialogDurationInSeconds, elapsedDialogTimer + delta);
+            dialogTextBox.PercentVisible = elapsedDialogTimer / dialogDurationInSeconds;
         }
         else if (dialogQueue.Count > 0)
         {
             elapsedDialogTimer = 0.0f;
+            dialogTextBox.PercentVisible = 0.0f;
             currentDialog = dialogQueue.Dequeue();
+
+            dialogDurationInSeconds = (currentDialog.Text.Length / charactersPerSecond);
             dialogTextBox.Text = currentDialog.Text;
+            speakerName.Text = currentDialog.Speaker.ToString();
         }
         else
         {
@@ -81,7 +86,7 @@ public class DialogService : Control
             tween.InterpolateProperty(
                 @object: this,
                 property: "rect_position:y",
-                initialVal: isVisible ? visibleYPosition : invisibleYPosition,
+                initialVal: RectPosition.y,
                 finalVal: invisibleYPosition,
                 duration: dialogBoxDisplayDuration
             );
@@ -100,7 +105,7 @@ public class DialogService : Control
         tween.InterpolateProperty(
             @object: this,
             property: "rect_position:y",
-            initialVal: isVisible ? visibleYPosition : invisibleYPosition,
+            initialVal: RectPosition.y,
             finalVal: visibleYPosition,
             duration: dialogBoxDisplayDuration
         );
@@ -108,7 +113,7 @@ public class DialogService : Control
     }
 
     [UsedImplicitly]
-    public void OnAnimationCompleted()
+    public void OnAnimationCompleted(object @object, NodePath node)
     {
         isVisible = isDisplaying;
     }
