@@ -96,6 +96,9 @@ public class DialogService : Control
 
     public void ShowDialog(IEnumerable<Dialog> dialogs)
     {
+        if (dialogQueue.Count > 0)
+            return;
+
         foreach (var dialog in dialogs)
         {
             dialogQueue.Enqueue(dialog);

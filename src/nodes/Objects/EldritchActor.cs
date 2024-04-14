@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Systems;
 
@@ -45,7 +46,12 @@ public abstract class EldritchActor : Actor
             }
             else
             {
-                GD.Print("Attempted to return to host, but host not visible");
+                Global.Services.Get<DialogService>().ShowDialog(
+                    new List<Dialog>
+                    {
+                        new("Damn, I need to see my body to go back to it...", Speaker.Imp)
+                    }
+                );
             }
         }
     }
