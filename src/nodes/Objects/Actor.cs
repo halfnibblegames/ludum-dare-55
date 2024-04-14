@@ -53,6 +53,11 @@ public abstract class Actor : KinematicBody2D
         HasControl = false;
     }
 
+    public void ResumeControl()
+    {
+        HasControl = true;
+    }
+
     public void Suspend()
     {
         IsActive = false;
