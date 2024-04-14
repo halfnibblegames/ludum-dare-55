@@ -1,7 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Godot;
 using HalfNibbleGame.Autoload;
+using HalfNibbleGame.Objects;
 using JetBrains.Annotations;
 
 public enum Speaker
@@ -89,9 +90,20 @@ public class DialogService : Control
             dialogTextBox.PercentVisible = 0.0f;
             currentDialog = dialogQueue.Dequeue();
 
+            var currentSpeakerName = currentDialog.Speaker.ToString();
+
+            var image = new Image();
+            var error = image.Load($"res://assets/{currentSpeakerName.ToLowerInvariant()}_portrait.png");
+            if (error == Error.Ok)
+            {
+                var texture = new ImageTexture();
+                texture.CreateFromImage(image);
+                portrait.Texture = texture;
+            }
+
             dialogDurationInSeconds = (currentDialog.Text.Length / charactersPerSecond);
             dialogTextBox.Text = currentDialog.Text;
-            speakerName.Text = currentDialog.Speaker.ToString();
+            speakerName.Text = currentSpeakerName;
         }
         else
         {
