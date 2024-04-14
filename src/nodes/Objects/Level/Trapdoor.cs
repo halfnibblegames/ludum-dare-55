@@ -32,8 +32,9 @@ public class Trapdoor : DetectingArea2D, IResettable
     protected override void OnActorEntered(Actor actor)
     {
         if (actor is Imp) return;
-        actor.Suspend();
+        actor.BlockControl();
         capturedActor = actor;
+        actor.GlobalPosition = GlobalPosition;
         sprite.Animation = openAnimation;
         sprite.Frame = 0;
         sprite.Play();

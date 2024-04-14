@@ -73,6 +73,7 @@ animations = [ {
 } ]
 
 [node name="Imp" type="KinematicBody2D"]
+z_index = 1
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

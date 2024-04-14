@@ -34,6 +34,9 @@ public abstract class EldritchActor : Actor
         if (!IsActive) return;
 
         host.Madness += MadnessPerMinute * delta;
+
+        if (!HasControl) return;
+
         if (Input.IsActionJustPressed("return_to_host"))
         {
             if (CanSeeHost)
@@ -52,9 +55,5 @@ public abstract class EldritchActor : Actor
         base._PhysicsProcess(delta);
 
         hostRay.CastTo = ToLocal(host.GlobalPosition);
-        //
-        // var space = GetWorld2d().DirectSpaceState;
-        // var results = space.IntersectRay(Position, ToLocal(host.GlobalPosition), new Array(this));
-        // canSeeHost = results.Count == 0;
     }
 }

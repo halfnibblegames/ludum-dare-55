@@ -9,6 +9,7 @@ public abstract class Actor : KinematicBody2D
 {
     private TileMap? tileMap;
     public bool IsActive { get; private set; }
+    public bool HasControl { get; private set; }
     protected abstract float Speed { get; }
     
     private Vector2 velocity;
@@ -43,16 +44,19 @@ public abstract class Actor : KinematicBody2D
 
     public void MakeActive()
     {
-        if (IsActive) return;
-
         IsActive = true;
+        HasControl = true;
+    }
+
+    public void BlockControl()
+    {
+        HasControl = false;
     }
 
     public void Suspend()
     {
-        if (!IsActive) return;
-
         IsActive = false;
+        HasControl = false;
     }
 
     public void Banish()
@@ -75,6 +79,8 @@ public abstract class Actor : KinematicBody2D
         if (!IsActive) return;
 
         updateInteractableLineOfSight();
+
+        if (!HasControl) return;
 
         if (Input.IsActionJustPressed("interact") &&
             closestInteractable is not null &&
@@ -140,7 +146,7 @@ public abstract class Actor : KinematicBody2D
     {
         velocity = Vector2.Zero;
         
-        if (!IsActive) return;
+        if (!HasControl) return;
 
         velocity.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
         velocity.y = Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");

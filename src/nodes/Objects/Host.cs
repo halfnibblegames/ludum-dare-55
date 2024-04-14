@@ -52,6 +52,8 @@ public class Host : Actor
 
         Madness = 0;
 
+        if (!HasControl) return;
+
         if (Input.IsActionJustPressed("summon_imp") && tryChooseSummonLocation(out summonLocation))
         {
             Suspend();
