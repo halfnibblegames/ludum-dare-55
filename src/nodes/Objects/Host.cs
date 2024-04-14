@@ -6,7 +6,7 @@ namespace HalfNibbleGame.Objects;
 
 public class Host : Actor
 {
-    private const float summoningDuration = 0.7f;
+    private const float summoningDuration = 0.3f;
 
     [Export] private float speed = 100;
     [Export] private float madnessCap = 200;
@@ -58,5 +58,5 @@ public class Host : Actor
     }
 
     protected override string CalculateAnimation() 
-        => summoningTimeout > 0.0f ? "summoning" : base.CalculateAnimation();
+        => !IsActive ? "summoning" : base.CalculateAnimation();
 }
