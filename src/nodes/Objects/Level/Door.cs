@@ -5,6 +5,9 @@ namespace HalfNibbleGame.Objects.Level;
 
 public class Door : StaticBody2D, ILevelState
 {
+    private const string openAnimation = "opened";
+    private const string closeAnimation = "closed";
+
     [Export] public ChannelKey Channel;
     [Export] public DoorState InitialState = DoorState.Closed;
     private DoorState state;
@@ -38,9 +41,8 @@ public class Door : StaticBody2D, ILevelState
 
     private void applyStateToCollision()
     {
-        var halfTransparent = new Color(Colors.White, 0.4f);
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = state == DoorState.Open;
-        GetNode<ColorRect>("ColorRect").Modulate = state == DoorState.Open ? halfTransparent : Colors.White;
+        GetNode<AnimatedSprite>("AnimatedSprite").Animation = state == DoorState.Open ? openAnimation : closeAnimation;
     }
 }
 
