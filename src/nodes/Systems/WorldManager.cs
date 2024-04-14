@@ -55,6 +55,12 @@ public class WorldManager : Node2D
         currentLevel = scene.Instance<Level>();
         AddChild(currentLevel);
         resetLevel();
+
+        var cinematic = currentLevel.GetCinematic();
+        if (cinematic is not null)
+        {
+            Global.Services.Get<DialogService>().ShowCinematic(cinematic);
+        }
     }
 
     public override void _Process(float delta)

@@ -7,7 +7,9 @@ using JetBrains.Annotations;
 public enum Speaker
 {
     Host,
-    Imp
+    Imp,
+    Clhubhukhapuslhamazarathoka,
+    Unknown
 }
 
 public sealed record Dialog(
