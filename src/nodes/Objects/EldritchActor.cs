@@ -46,12 +46,10 @@ public abstract class EldritchActor : Actor
             }
             else
             {
-                Global.Services.Get<DialogService>().ShowDialog(
-                    new List<Dialog>
-                    {
+                Global.Services.Get<DialogService>()
+                    .ShowDialog(
                         new("Damn, I need to see my body to go back to it...", Speaker.Imp)
-                    }
-                );
+                    );
             }
         }
     }
