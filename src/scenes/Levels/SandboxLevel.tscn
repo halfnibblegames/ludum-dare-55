@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/Levels/Level2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Levels/Level3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Levels/Level4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Objects/Level/PressurePlate.tscn" type="PackedScene" id=12]
 
 [node name="SandboxLevel" type="Node2D"]
 script = ExtResource( 1 )
@@ -57,3 +58,7 @@ position = Vector2( 72, 152 )
 
 [node name="RadiantAnomaly" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 152 )
+
+[node name="PressurePlate" parent="." instance=ExtResource( 12 )]
+position = Vector2( 200, 232 )
+Channel = 1
