@@ -6,7 +6,19 @@ namespace HalfNibbleGame.Objects.Level;
 
 public class Exit : DetectingArea2D
 {
+    private const string openAnimation = "glow";
+
     [Export] public PackedScene? NextLevelScene;
+    private AnimatedSprite animatedSprite = null!;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+        animatedSprite.Animation = openAnimation;
+        animatedSprite.Play();
+    }
 
     protected override void OnActorEntered(Actor actor)
     {
