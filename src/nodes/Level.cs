@@ -10,6 +10,6 @@ public class Level : Node2D
 
     public override void _Ready()
     {
-        TileMap = GetNode<TileMap>("TileMap");
+        TileMap = GetNode<TileMap>("Floor");
     }
 }
