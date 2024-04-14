@@ -12,7 +12,7 @@ public abstract class DetectingArea2D : Area2D
 
     private void onBodyEntered(PhysicsBody2D body)
     {
-        if (body is Actor actor)
+        if (body is Actor { HasControl: true } actor)
         {
             OnActorEntered(actor);
         }
