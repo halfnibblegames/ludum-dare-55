@@ -15,10 +15,16 @@ public sealed record Dialog(
     Speaker Speaker
 );
 
+public sealed record Cinematic(
+    List<Dialog> Dialogs,
+    bool AllowAutoSkip
+);
+
 public class DialogService : Control
 {
     private const int visibleYPosition = 556;
     private const int invisibleYPosition = 720;
+    private const float autoDismissTimer = 2.0f;
     private const float dialogBoxDisplayDuration = 0.15f;
     private const float charactersPerSecond = 30.0f;
 
@@ -33,6 +39,7 @@ public class DialogService : Control
     private Label dialogTextBox = default!;
     private Label speakerName = default!;
     private Tween tween = default!;
+    private bool cinematicIsAutoSkippable;
 
     public override void _Ready()
     {
@@ -64,11 +71,15 @@ public class DialogService : Control
                 currentDialog = null;
             }
         }
+        else if (cinematicIsAutoSkippable && elapsedDialogTimer > dialogDurationInSeconds + autoDismissTimer)
+        {
+            currentDialog = null;
+        }
 
         if (currentDialog is not null)
         {
-            elapsedDialogTimer = Mathf.Min(dialogDurationInSeconds, elapsedDialogTimer + delta);
-            dialogTextBox.PercentVisible = elapsedDialogTimer / dialogDurationInSeconds;
+            elapsedDialogTimer += delta;
+            dialogTextBox.PercentVisible = Mathf.Min(1.0f, elapsedDialogTimer / dialogDurationInSeconds);
         }
         else if (dialogQueue.Count > 0)
         {
@@ -94,16 +105,23 @@ public class DialogService : Control
         }
     }
 
-    public void ShowDialog(IEnumerable<Dialog> dialogs)
+    public void ShowDialog(Dialog dialog)
+    {
+        var cinematic = new Cinematic(new List<Dialog> { dialog }, true);
+        ShowCinematic(cinematic);
+    }
+
+    public void ShowCinematic(Cinematic cinematic)
     {
         if (dialogQueue.Count > 0)
             return;
 
-        foreach (var dialog in dialogs)
+        foreach (var dialog in cinematic.Dialogs)
         {
             dialogQueue.Enqueue(dialog);
         }
 
+        cinematicIsAutoSkippable = cinematic.AllowAutoSkip;
         isDisplaying = true;
         tween.InterpolateProperty(
             @object: this,
@@ -119,5 +137,11 @@ public class DialogService : Control
     public void OnAnimationCompleted(object @object, NodePath node)
     {
         isVisible = isDisplaying;
+    }
+
+    public void ClearAllDialog()
+    {
+        dialogQueue.Clear();
+        currentDialog = null;
     }
 }
