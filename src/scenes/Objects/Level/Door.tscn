@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/Objects/Level/Door.cs" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="Door" type="StaticBody2D"]
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 8.0
+color = Color( 0.282353, 0.176471, 0.0666667, 1 )
