@@ -44,8 +44,6 @@ public class WorldManager : Node2D
 
     public void LoadLevel(PackedScene scene)
     {
-        currentActor?.BlockControl();
-        host.BlockControl();
 
         if (currentLevel != null)
         {
@@ -182,6 +180,7 @@ public class WorldManager : Node2D
     {
         currentActor?.Suspend();
         actor.CallDeferred(nameof(Actor.MakeActive));
+        actor.MakeActive();
         currentActor = actor;
     }
 }

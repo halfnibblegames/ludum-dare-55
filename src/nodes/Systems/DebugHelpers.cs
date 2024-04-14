@@ -21,5 +21,11 @@ public class DebugHelpers : Node
         {
             Global.Services.Get<Host>().Madness = 0;
         }
+
+        if (Input.IsActionJustPressed("debug_toggle_collision"))
+        {
+            var shape = Global.Services.Get<Host>().GetNode<CollisionShape2D>("CollisionShape2D");
+            shape.Disabled = !shape.Disabled;
+        }
     }
 }
