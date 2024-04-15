@@ -72,9 +72,11 @@ margin_bottom = 720.0
 
 [node name="Host" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "BGM"
 
 [node name="Imp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+bus = "BGM"
 
 [node name="Statistics" type="Node" parent="."]
 script = ExtResource( 11 )

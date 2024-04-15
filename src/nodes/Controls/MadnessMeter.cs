@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Objects;
@@ -23,6 +22,15 @@ public class MadnessMeter : TextureRect
         var madnessPercentage = host.Madness / host.MadnessCap;
         madnessBar.RectSize = madnessBar.RectSize with { x = (int)(fullMadnessBarSize * madnessPercentage) };
         material?.SetShaderParam("amount", madnessPercentage * maxAberration);
+
+        var bgmBus = AudioServer.GetBusIndex("BGM");
+        var lowPass = AudioServer.GetBusEffect(bgmBus, 0) as AudioEffectLowPassFilter;
+        if (lowPass is null)
+        {
+            GD.PushWarning("Low pass filter not found on BGM bus.");
+            return;
+        }
+        lowPass.CutoffHz = 11000 - (madnessPercentage * 10000);
     }
 
     private void ControlVisibility(Host host, ColorRect madnessBar)
