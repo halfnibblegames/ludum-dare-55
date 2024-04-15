@@ -28,6 +28,8 @@ public class DialogService : Control
     private Tween tween = default!;
     private bool cinematicIsAutoSkippable;
 
+    public bool IsInCinematic => dialogQueue.Count > 0 || currentDialog is not null;
+
     public override void _Ready()
     {
         base._Ready();

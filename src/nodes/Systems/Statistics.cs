@@ -1,5 +1,7 @@
 ﻿using System;
 using Godot;
+using HalfNibbleGame.Autoload;
+using HalfNibbleGame.Controls;
 
 namespace HalfNibbleGame.Systems;
 
@@ -7,7 +9,7 @@ public class Statistics : Node
 {
     private Label speedTimer = null!;
 
-    private DateTime startTime;
+    private float totalTime;
     private float totalMadnessTime;
     private float thisLevelMadnessTime;
     private int deaths;
@@ -17,7 +19,6 @@ public class Statistics : Node
     public override void _Ready()
     {
         speedTimer = GetNode<Label>("SpeedTimer");
-        startTime = DateTime.Now;
         if (!Settings.ShowTimer)
         {
             speedTimer.Hide();
@@ -27,8 +28,18 @@ public class Statistics : Node
     public override void _Process(float delta)
     {
         if (isSummonActive) thisLevelMadnessTime += delta;
-        var timeElapsed = DateTime.Now - startTime;
+        var inCinematic = Global.Services.Get<DialogService>().IsInCinematic;
+
+        if (!inCinematic)
+        {
+            totalTime += delta;
+        }
+
+        var timeElapsed = TimeSpan.FromSeconds(totalTime);
         speedTimer.Text = $"{timeElapsed.Minutes:00}:{timeElapsed.Seconds:00}";
+
+        var shouldModulate = inCinematic && DateTime.Now.Second % 2 == 0;
+        speedTimer.Modulate = shouldModulate ? Colors.Gray : Colors.White;
     }
 
     public void OnLevelReset()
@@ -59,7 +70,7 @@ public class Statistics : Node
 
     public void OnGameFinished()
     {
-        Victory.TotalTime = DateTime.Now - startTime;
+        Victory.TotalTime = TimeSpan.FromSeconds(totalTime);
         Victory.ImpTime = TimeSpan.FromSeconds(totalMadnessTime);
     }
 }

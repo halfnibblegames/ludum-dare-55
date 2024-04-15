@@ -20,7 +20,7 @@ public class Game : Node2D
         var hostShouldPlay = actor is not EldritchActor;
         if (hostShouldPlay == hostIsPlaying)
             return;
-        
+
         if (hostShouldPlay)
         {
             imp.Stop();
