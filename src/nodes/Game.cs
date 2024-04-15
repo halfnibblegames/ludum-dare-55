@@ -11,10 +11,8 @@ public class Game : Node2D
     public override void _Ready()
     {
         Global.Services.ProvideInScene(this);
-        host = GetNode<AudioStreamPlayer>("Host");
+        host = Global.Prefabs.GetNode<AudioStreamPlayer>("AudioStreamPlayer");
         imp = GetNode<AudioStreamPlayer>("Imp");
-        host.Play();
-
     }
 
     public void ActorChanged(Actor actor)

@@ -1,5 +1,6 @@
 using Godot;
 using HalfNibbleGame;
+using HalfNibbleGame.Autoload;
 
 public class Title : Control
 {
@@ -7,7 +8,7 @@ public class Title : Control
     {
         base._Ready();
 
-        GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
+        Global.Prefabs.GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
     }
 
     public void ToggleSpeedrunTimer(bool showSpeedrunTimer)

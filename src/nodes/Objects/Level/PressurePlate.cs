@@ -12,21 +12,25 @@ public class PressurePlate : DetectingArea2D, ILevelState
 
     private ChannelState state;
     private AnimatedSprite sprite = null!;
+    private AudioStreamPlayer sfxOn = default!;
+    private AudioStreamPlayer sfxOff = default!;
 
     public override void _Ready()
     {
         base._Ready();
         AddToGroup(Constants.LevelStateGroup);
         sprite = GetNode<AnimatedSprite>("AnimatedSprite");
+        sfxOn = GetNode<AudioStreamPlayer>("SFX");
+        sfxOff = GetNode<AudioStreamPlayer>("SFX_Off");
     }
 
     protected override void OnActorEntered(Actor actor)
     {
         if (actor is not Imp)
         {
+            sfxOn.Play();
             this.UpdateChannel(Channel, ChannelState.On);
             sprite.Animation = pressedAnimation;
-            GetNode<AudioStreamPlayer>("SFX").Play();
         }
     }
 
@@ -34,9 +38,9 @@ public class PressurePlate : DetectingArea2D, ILevelState
     {
         if (actor is not Imp)
         {
+            sfxOff.Play();
             this.UpdateChannel(Channel, ChannelState.Off);
             sprite.Animation = unpressedAnimation;
-            GetNode<AudioStreamPlayer>("SFX_Off").Play();
         }
     }
 
