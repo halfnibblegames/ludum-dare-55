@@ -38,11 +38,11 @@ animations = [ {
 extents = Vector2( 6, 2 )
 
 [node name="PressurePlate" type="Area2D"]
-z_index = 1
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 10 )
+z_index = 1
 frames = SubResource( 9 )
 animation = "idle"
 __meta__ = {
