@@ -80,7 +80,6 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-z_index = 1
 frames = SubResource( 12 )
 animation = "idle"
 __meta__ = {

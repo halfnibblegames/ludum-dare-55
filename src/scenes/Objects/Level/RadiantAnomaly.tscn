@@ -131,12 +131,9 @@ animations = [ {
 extents = Vector2( 8, 8 )
 
 [node name="RadiantAnomaly" type="StaticBody2D"]
-z_index = 1
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-z_index = 1
-z_as_relative = false
 frames = SubResource( 30 )
 animation = "idle"
 __meta__ = {
