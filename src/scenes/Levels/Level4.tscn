@@ -1,18 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/Objects/Level/Switch.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Objects/Level/Trapdoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Objects/Level/PressurePlate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Objects/Level/DoorHorizontal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Objects/Level/RadiantAnomaly.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Objects/Level/Exit.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Levels/Level5.tscn" type="PackedScene" id=8]
 
 [node name="Level4" type="Node2D"]
 script = ExtResource( 1 )
 StartTile = Vector2( 2, 8 )
-LevelIdentifier = 4
+LevelIdentifier = 5
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -24,42 +23,37 @@ tile_data = PoolIntArray( 65536, 13, 0, 65537, 13, 0, 65538, 13, 0, 65539, 13, 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 65536, 0, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 15, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 2, 0, 131072, 11, 0, 131087, 11, 0, 131091, 11, 0, 196608, 11, 0, 196623, 11, 0, 196627, 11, 0, 262144, 11, 0, 262159, 11, 0, 262163, 11, 0, 327680, 11, 0, 327699, 11, 0, 393216, 16, 0, 393217, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 15, 0, 393222, 1, 0, 393223, 14, 0, 393224, 1, 0, 393225, 15, 0, 393226, 1, 0, 393228, 15, 0, 393229, 1, 0, 393231, 7, 0, 393235, 11, 0, 458752, 11, 0, 458757, 11, 0, 458761, 11, 0, 458764, 11, 0, 458771, 11, 0, 524288, 11, 0, 524307, 11, 0, 589824, 11, 0, 589829, 11, 0, 589833, 11, 0, 589836, 11, 0, 589843, 11, 0, 655362, 13, 0, 655363, 13, 0, 655370, 13, 0, 655371, 13, 0, 720896, 5, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 720908, 6, 0, 720909, 6, 0, 720910, 6, 0, 720911, 6, 0, 720912, 6, 0, 720913, 6, 0, 720914, 6, 0, 720915, 7, 0 )
+tile_data = PoolIntArray( 65536, 0, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 15, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 2, 0, 131072, 11, 0, 131087, 11, 0, 131091, 11, 0, 196608, 11, 0, 196627, 11, 0, 262144, 11, 0, 262149, 0, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 15, 0, 262159, 7, 0, 262163, 11, 0, 327680, 11, 0, 327693, 11, 0, 327699, 11, 0, 393216, 16, 0, 393217, 1, 0, 393218, 1, 0, 393219, 14, 0, 393220, 1, 0, 393221, 17, 0, 393235, 11, 0, 458752, 11, 0, 458757, 5, 0, 458759, 2, 0, 458763, 0, 0, 458765, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 14, 0, 458770, 1, 0, 458771, 17, 0, 524288, 11, 0, 524295, 11, 0, 524299, 11, 0, 524307, 11, 0, 589824, 11, 0, 589831, 11, 0, 589835, 11, 0, 589843, 11, 0, 655362, 13, 0, 655363, 13, 0, 655370, 13, 0, 655371, 13, 0, 720896, 5, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 720908, 6, 0, 720909, 6, 0, 720910, 6, 0, 720911, 6, 0, 720912, 6, 0, 720913, 6, 0, 720914, 6, 0, 720915, 7, 0 )
 
 [node name="Exit" parent="." instance=ExtResource( 7 )]
-position = Vector2( 280, 136 )
+position = Vector2( 280, 56 )
 NextLevelScene = ExtResource( 8 )
-RadiantSealsNeeded = 1
 
-[node name="Door" parent="." instance=ExtResource( 5 )]
-position = Vector2( 40, 104 )
+[node name="Switch" parent="." instance=ExtResource( 3 )]
+position = Vector2( 56, 56 )
+Channel = 1
+
+[node name="PressurePlateB1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 136 )
+Channel = 2
+
+[node name="PressurePlateB2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 280, 152 )
+Channel = 2
+
+[node name="DoorA1" parent="." instance=ExtResource( 5 )]
+position = Vector2( 104, 120 )
+Channel = 1
+
+[node name="DoorA2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 200, 120 )
 Channel = 1
 InitialState = 0
 
-[node name="SwitchA" parent="." instance=ExtResource( 3 )]
-position = Vector2( 120, 136 )
+[node name="DoorA3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 232, 120 )
 Channel = 1
 
-[node name="SwitchB" parent="." instance=ExtResource( 3 )]
-position = Vector2( 280, 56 )
+[node name="DoorB" parent="." instance=ExtResource( 5 )]
+position = Vector2( 232, 72 )
 Channel = 2
-
-[node name="Trapdoor" parent="." instance=ExtResource( 4 )]
-position = Vector2( 96, 136 )
-
-[node name="Trapdoor2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 144, 136 )
-
-[node name="Trapdoor3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 208, 136 )
-
-[node name="Door2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 184, 104 )
-Channel = 1
-
-[node name="Door3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 232, 104 )
-Channel = 2
-
-[node name="RadiantAnomaly" parent="." instance=ExtResource( 6 )]
-position = Vector2( 164, 136 )
