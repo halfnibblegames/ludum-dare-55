@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/Objects/Level/Switch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Objects/Level/Trapdoor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Objects/Level/DoorHorizontal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Objects/Level/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Objects/Level/Exit.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Levels/Level2.tscn" type="PackedScene" id=8]
 
