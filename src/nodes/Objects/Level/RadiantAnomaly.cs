@@ -1,4 +1,5 @@
 ﻿using Godot;
+using JetBrains.Annotations;
 
 namespace HalfNibbleGame.Objects.Level;
 
@@ -26,9 +27,22 @@ public class RadiantAnomaly : StaticBody2D, ILevelResettable
 
     private void onActivated(Actor actor)
     {
-        if (actor is not Host || collisionShape.Disabled) return;
+        if (actor is not Host host || collisionShape.Disabled) return;
+
+        host.IsDismissingSeal = true;
+        host.BlockControl();
 
         collisionShape.Disabled = true;
-        sprite.Hide();
+        sprite.Animation = "broken";
+    }
+
+    [UsedImplicitly]
+    public void OnAnimationFinished()
+    {
+        if (sprite.Animation == "broken")
+        {
+            sprite.Hide();
+            sprite.Animation = "idle";
+        }
     }
 }

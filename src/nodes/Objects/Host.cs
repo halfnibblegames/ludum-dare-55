@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Systems;
+using JetBrains.Annotations;
 
 namespace HalfNibbleGame.Objects;
 
@@ -16,6 +17,7 @@ public class Host : Actor
 
     public float Madness { get; set; }
     public float MadnessCap => madnessCap;
+    public bool IsDismissingSeal { get; set; }
     
     private float summoningTimeout;
     private Vector2 summonLocation;
@@ -79,5 +81,14 @@ public class Host : Actor
     }
 
     protected override string CalculateAnimation() 
-        => !IsActive ? "summoning" : base.CalculateAnimation();
+        => !IsActive || IsDismissingSeal ? "summoning" : base.CalculateAnimation();
+
+    [UsedImplicitly]
+    public void OnAnimationFinished()
+    {
+        if (!IsDismissingSeal) return;
+        
+        IsDismissingSeal = false;
+        ResumeControl();
+    }
 }

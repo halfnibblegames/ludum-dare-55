@@ -3,7 +3,7 @@
 [ext_resource path="res://nodes/Objects/Host.cs" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 5 )
+extents = Vector2( 4, 5 )
 
 [sub_resource type="StreamTexture" id=2]
 load_path = "res://.import/host.png-9808f9432076b9f365d703fbf14c2bd5.stex"
@@ -103,3 +103,5 @@ __meta__ = {
 "source": "res://assets/host.aseprite"
 }
 }
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="OnAnimationFinished"]
