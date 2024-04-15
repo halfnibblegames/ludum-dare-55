@@ -137,7 +137,7 @@ public class WorldManager : Node2D
 
         var startLocation = currentLevel.TileMap.MapToWorld(currentLevel.StartTile);
         var globalPos = currentLevel.TileMap.ToGlobal(startLocation);
-        host.Reset(globalPos, currentLevel.TileMap);
+        host.Reset(globalPos);
         activateActor(host);
     }
 
@@ -158,7 +158,7 @@ public class WorldManager : Node2D
 
         Global.Services.Get<Host>().Madness += actor.SummoningMadness;
 
-        actor.Reset(location, currentLevel.TileMap);
+        actor.Reset(location);
         activateActor(actor);
     }
 

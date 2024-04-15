@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Godot;
 using HalfNibbleGame.Objects.Level;
 
@@ -7,7 +6,6 @@ namespace HalfNibbleGame.Objects;
 
 public abstract class Actor : KinematicBody2D
 {
-    private TileMap? tileMap;
     public bool IsActive { get; private set; }
     public bool HasControl { get; private set; }
     protected abstract float Speed { get; }
@@ -26,16 +24,8 @@ public abstract class Actor : KinematicBody2D
         GetNode<AnimatedSprite>("AnimatedSprite").Playing = true;
     }
 
-    protected Vector2 FindCurrentTile()
+    public void Reset(Vector2 globalPos)
     {
-        if (tileMap is null) throw new InvalidOperationException();
-        return tileMap.WorldToMap(tileMap.ToLocal(GlobalPosition));
-    }
-
-    // ReSharper disable once ParameterHidesMember
-    public void Reset(Vector2 globalPos, TileMap tileMap)
-    {
-        this.tileMap = tileMap;
         GlobalPosition = globalPos;
         OnReset();
     }
@@ -62,6 +52,7 @@ public abstract class Actor : KinematicBody2D
     {
         IsActive = false;
         HasControl = false;
+        closestInteractable?.StopGlow();
     }
 
     public void Banish()
@@ -88,22 +79,27 @@ public abstract class Actor : KinematicBody2D
         if (!HasControl) return;
 
         if (Input.IsActionJustPressed("interact") &&
-            closestInteractable is not null &&
-            closestInteractable.GlobalPosition.DistanceSquaredTo(GlobalPosition) < 20 * 20 &&
+            isInteractableClose() &&
             !(interactableRay?.IsColliding() ?? false))
         {
-            closestInteractable.Interact(this);
+            closestInteractable!.Interact(this);
         }
     }
 
     private void updateInteractableLineOfSight()
     {
+        var oldInteractable = closestInteractable;
         closestInteractable = GetTree().GetNodesInGroup(Constants.InteractiveGroup)
             .OfType<Interactable>()
             .Select(interactable => (interactable, interactable.GlobalPosition.DistanceSquaredTo(GlobalPosition)))
             .OrderBy(tuple => tuple.Item2)
             .Select(tuple => tuple.Item1)
             .FirstOrDefault();
+
+        if (oldInteractable != closestInteractable)
+        {
+            oldInteractable?.StopGlow();
+        }
 
         if (closestInteractable is null)
         {
@@ -122,6 +118,21 @@ public abstract class Actor : KinematicBody2D
 
         interactableRay.AddException(closestInteractable.GetParent());
         interactableRay.CastTo = (closestInteractable.GlobalPosition - GlobalPosition);
+
+        if (isInteractableClose())
+        {
+            closestInteractable?.StartGlow();
+        }
+        else
+        {
+            closestInteractable?.StopGlow();
+        }
+    }
+
+    private bool isInteractableClose()
+    {
+        if (closestInteractable is null) return false;
+        return closestInteractable.GlobalPosition.DistanceSquaredTo(GlobalPosition) < 20 * 20;
     }
 
     private bool checkIfSpriteShouldBeMirrored()
