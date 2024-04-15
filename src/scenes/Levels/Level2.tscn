@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/decorations/vote4imp.png" type="Texture" id=9]
 [ext_resource path="res://assets/decorations/moar_bones.png" type="Texture" id=10]
 [ext_resource path="res://assets/decorations/necronomicon.png" type="Texture" id=11]
+[ext_resource path="res://assets/decorations/imp_hint.png" type="Texture" id=12]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
@@ -80,3 +81,7 @@ texture = ExtResource( 8 )
 [node name="Candles3" type="Sprite" parent="Decorations"]
 position = Vector2( 208, 120 )
 texture = ExtResource( 8 )
+
+[node name="ImpHint" type="Sprite" parent="."]
+position = Vector2( 157, 58 )
+texture = ExtResource( 12 )

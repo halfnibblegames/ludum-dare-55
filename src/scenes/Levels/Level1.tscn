@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/decorations/moar_bones.png" type="Texture" id=10]
 [ext_resource path="res://assets/decorations/rlyeh_gang.png" type="Texture" id=11]
 [ext_resource path="res://assets/decorations/necronomicon.png" type="Texture" id=12]
+[ext_resource path="res://assets/decorations/crystals_hint.png" type="Texture" id=13]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 1 )
@@ -109,3 +110,7 @@ texture = ExtResource( 10 )
 [node name="Candles3" type="Sprite" parent="Decorations"]
 position = Vector2( 280, 160 )
 texture = ExtResource( 9 )
+
+[node name="CrystalsHint" type="Sprite" parent="."]
+position = Vector2( 128, 57 )
+texture = ExtResource( 13 )
