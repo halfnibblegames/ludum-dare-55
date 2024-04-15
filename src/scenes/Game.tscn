@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/post_process.gdshader" type="Shader" id=2]
@@ -11,11 +11,13 @@
 [ext_resource path="res://assets/imp.mp3" type="AudioStream" id=9]
 [ext_resource path="res://assets/PixelifySansLarge.tres" type="DynamicFont" id=10]
 [ext_resource path="res://nodes/Systems/Statistics.cs" type="Script" id=11]
+[ext_resource path="res://assets/noisy_gradient.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
 shader_param/amount = 0.0
 shader_param/severity = 1.0
+shader_param/noise = ExtResource( 12 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 8 )
@@ -68,13 +70,6 @@ margin_top = 720.0
 margin_right = 290.0
 margin_bottom = 720.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
-material = SubResource( 2 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-
 [node name="Host" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
@@ -95,6 +90,13 @@ custom_fonts/font = ExtResource( 10 )
 text = "00:00"
 align = 2
 max_lines_visible = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [connection signal="LevelCompleted" from="ViewportContainer/Viewport/World" to="Statistics" method="OnLevelCompleted"]
 [connection signal="LevelReset" from="ViewportContainer/Viewport/World" to="Statistics" method="OnLevelReset"]
