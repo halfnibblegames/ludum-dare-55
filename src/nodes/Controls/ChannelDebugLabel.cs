@@ -24,7 +24,8 @@ public class ChannelDebugLabel : Label
         var channel = parent.Get("Channel");
         if (channel is not int key || key == 0)
         {
-            Text = "";
+            var numberOfSealsToBreak = parent.Get("RadiantSealsNeeded");
+            Text = numberOfSealsToBreak?.ToString() ?? "";
             return;
         }
         Text = Enum.GetName(typeof(ChannelKey), key);

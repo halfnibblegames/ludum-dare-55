@@ -12,6 +12,7 @@ public class Exit : DetectingArea2D, ILevelState
 
     [Export] public PackedScene? NextLevelScene;
     [Export] public int RadiantSealsNeeded;
+    public bool IsOpen => numberOfDismissedRadiantSeals >= RadiantSealsNeeded;
 
     private AnimatedSprite animatedSprite = null!;
     private CollisionShape2D tentacleCollision = null!;
@@ -23,7 +24,7 @@ public class Exit : DetectingArea2D, ILevelState
         base._Ready();
 
         animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
-        tentacleCollision = GetNode<CollisionShape2D>("TentacleCollision");
+        tentacleCollision = GetNode<CollisionShape2D>("TentacleBody/TentacleCollision");
         animatedSprite.Play();
         AddToGroup(Constants.LevelStateGroup);
         AddToGroup(Constants.LevelResetGroup);
@@ -42,6 +43,8 @@ public class Exit : DetectingArea2D, ILevelState
     protected override void OnActorEntered(Actor actor)
     {
         if (actor is not Host) return;
+        if (!IsOpen) return;
+        
         var nextLevel = NextLevelScene ?? Global.Prefabs.Sandbox;
         if (nextLevel is null) return;
         Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.LoadLevel), nextLevel);
@@ -56,8 +59,7 @@ public class Exit : DetectingArea2D, ILevelState
 
     private void updateOpenState()
     {
-        var isOpen = numberOfDismissedRadiantSeals >= RadiantSealsNeeded;
-        animatedSprite.Animation = isOpen ? openAnimation : closedAnimation;
-        tentacleCollision.Disabled = isOpen;
+        animatedSprite.Animation = IsOpen ? openAnimation : closedAnimation;
+        tentacleCollision.Disabled = IsOpen;
     }
 }
