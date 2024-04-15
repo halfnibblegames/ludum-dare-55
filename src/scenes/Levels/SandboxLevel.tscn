@@ -8,8 +8,8 @@
 [ext_resource path="res://scenes/Objects/Level/Exit.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Levels/Level1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Objects/Level/Trapdoor.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/Levels/Level2.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/Levels/Level3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Levels/Level3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Levels/Level2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Levels/Level4.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Objects/Level/PressurePlate.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/Levels/Level5.tscn" type="PackedScene" id=13]
@@ -45,11 +45,11 @@ NextLevelScene = ExtResource( 7 )
 
 [node name="Level2Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 64, 48 )
-NextLevelScene = ExtResource( 9 )
+NextLevelScene = ExtResource( 10 )
 
 [node name="Level3Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 96, 48 )
-NextLevelScene = ExtResource( 10 )
+NextLevelScene = ExtResource( 9 )
 
 [node name="Level4Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 128, 48 )
