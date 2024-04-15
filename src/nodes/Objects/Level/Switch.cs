@@ -14,6 +14,12 @@ public class Switch : StaticBody2D, ILevelState
         base._Ready();
         this.MakeInteractable(this, nameof(onActivated));
         AddToGroup(Constants.LevelStateGroup);
+
+        if (GetNode<Sprite>("Sprite").Material is ShaderMaterial shaderMaterial)
+        {
+            var copy = (ShaderMaterial) shaderMaterial.Duplicate();
+            GetNode<Sprite>("Sprite").Material = copy;
+        }
     }
 
     public void ConsumeChange(ChannelKey key, ChannelState newState)
@@ -21,6 +27,8 @@ public class Switch : StaticBody2D, ILevelState
         if (key != Channel) return;
 
         state = newState;
+        var shaderMaterial = GetNode<Sprite>("Sprite").Material as ShaderMaterial;
+        shaderMaterial?.SetShaderParam("hue", LevelState.CalculateHue(key, state));
     }
 
     private void onActivated(Actor actor)

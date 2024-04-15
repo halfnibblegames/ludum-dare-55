@@ -71,4 +71,12 @@ position = Vector2( 40, 152 )
 
 [node name="PressurePlate" parent="." instance=ExtResource( 12 )]
 position = Vector2( 200, 232 )
+Channel = 2
+
+[node name="Switch2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 232, 232 )
 Channel = 1
+
+[node name="Switch3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 264, 232 )
+Channel = 2
