@@ -14,6 +14,7 @@ public class Game : Node2D
         host = GetNode<AudioStreamPlayer>("Host");
         imp = GetNode<AudioStreamPlayer>("Imp");
         host.Play();
+
     }
 
     public void ActorChanged(Actor actor)

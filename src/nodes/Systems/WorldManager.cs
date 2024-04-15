@@ -20,6 +20,12 @@ public class WorldManager : Node2D
     private Level? currentLevel;
 
     [Signal] public delegate void LevelReset();
+    [Signal] public delegate void LevelCompleted();
+
+    [Signal] public delegate void PlayedDied();
+
+    [Signal] public delegate void SummonStarted();
+    [Signal] public delegate void SummonEnded();
 
     public override void _Ready()
     {
@@ -39,6 +45,7 @@ public class WorldManager : Node2D
     public void KillPlayer()
     {
         host.Boom();
+        EmitSignal(nameof(PlayedDied));
         resetLevel();
     }
 
@@ -47,6 +54,7 @@ public class WorldManager : Node2D
         if (currentLevel != null)
         {
             RemoveChild(currentLevel);
+            EmitSignal(nameof(LevelCompleted));
         }
 
         currentLevel = scene.Instance<Level>();
@@ -129,6 +137,7 @@ public class WorldManager : Node2D
             this.UpdateChannel((ChannelKey) key, ChannelState.Off);
         }
         GetTree().CallGroup(Constants.LevelResetGroup, nameof(ILevelResettable.Reset));
+        EmitSignal(nameof(LevelReset));
     }
 
     private void resetPlayerForLevel()
@@ -160,6 +169,7 @@ public class WorldManager : Node2D
 
         actor.Reset(location);
         activateActor(actor);
+        EmitSignal(nameof(SummonStarted));
     }
 
     public void TryReturnToHost()
@@ -173,6 +183,7 @@ public class WorldManager : Node2D
         activateActor(targetActor);
         oldActor.Banish();
         summonedForms.RemoveAt(summonedForms.Count - 1);
+        EmitSignal(nameof(SummonEnded));
     }
 
     private void activateActor(Actor actor)
