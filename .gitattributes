@@ -17,6 +17,7 @@
 *.godot    text eol=lf
 *.tres     text eol=lf
 *.tscn     text eol=lf
+export_presets.cfg text eol=lf
 
 # Scripts & config
 *.json     text
