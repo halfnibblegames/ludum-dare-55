@@ -17,7 +17,6 @@ public sealed class Interactable : Node2D
     public void StartGlow()
     {
         if (glow is not null) return;
-        GD.Print("start glow");
         glow = Global.Prefabs.Glow?.Instance();
         if (glow is not null) AddChild(glow);
     }
@@ -25,7 +24,6 @@ public sealed class Interactable : Node2D
     public void StopGlow()
     {
         if (glow is null) return;
-        GD.Print("end glow");
         glow.QueueFree();
         glow = null;
     }
