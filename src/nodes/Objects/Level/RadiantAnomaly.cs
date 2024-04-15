@@ -35,6 +35,7 @@ public class RadiantAnomaly : StaticBody2D, ILevelResettable
 
         collisionShape.Disabled = true;
         sprite.Animation = "broken";
+        GetNode<AudioStreamPlayer>("SFX").Play();
     }
 
     [UsedImplicitly]
@@ -42,6 +43,7 @@ public class RadiantAnomaly : StaticBody2D, ILevelResettable
     {
         if (sprite.Animation == "broken")
         {
+            GetNode<AudioStreamPlayer>("SFX").Stop();
             sprite.Hide();
             sprite.Animation = "idle";
 

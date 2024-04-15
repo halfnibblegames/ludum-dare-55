@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/crystal.mp3-812893c5718977a0463d427df85edbcd.mp3str"
+
+[deps]
+
+source_file="res://assets/crystal.mp3"
+dest_files=[ "res://.import/crystal.mp3-812893c5718977a0463d427df85edbcd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

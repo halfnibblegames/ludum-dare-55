@@ -35,5 +35,6 @@ public class Switch : StaticBody2D, ILevelState
     {
         var newState = state == ChannelState.Off ? ChannelState.On : ChannelState.Off;
         this.UpdateChannel(Channel, newState);
+        GetNode<AudioStreamPlayer>("SFX").Play();
     }
 }
