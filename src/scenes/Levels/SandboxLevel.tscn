@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/Levels/Level4.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Objects/Level/PressurePlate.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/Levels/Level5.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Levels/Level6.tscn" type="PackedScene" id=14]
 
 [node name="SandboxLevel" type="Node2D"]
 script = ExtResource( 1 )
@@ -57,6 +58,10 @@ NextLevelScene = ExtResource( 11 )
 [node name="Level5Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 160, 48 )
 NextLevelScene = ExtResource( 13 )
+
+[node name="Level6Portal" parent="." instance=ExtResource( 6 )]
+position = Vector2( 192, 49 )
+NextLevelScene = ExtResource( 14 )
 
 [node name="Trapdoor" parent="." instance=ExtResource( 8 )]
 position = Vector2( 72, 152 )
