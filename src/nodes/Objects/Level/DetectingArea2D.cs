@@ -13,7 +13,7 @@ public abstract class DetectingArea2D : Area2D, ILevelResettable
         AddToGroup(Constants.LevelResetGroup);
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
         if (signalsConnected) return;
         Connect("body_entered", this, nameof(onBodyEntered));

@@ -16,7 +16,8 @@ public enum ChannelKey
 {
     None = 0,
     A,
-    B
+    B,
+    Radiant
 }
 
 public enum ChannelState

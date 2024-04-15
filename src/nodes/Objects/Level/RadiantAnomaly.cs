@@ -1,4 +1,5 @@
 ﻿using Godot;
+using HalfNibbleGame.Systems;
 using JetBrains.Annotations;
 
 namespace HalfNibbleGame.Objects.Level;
@@ -43,6 +44,8 @@ public class RadiantAnomaly : StaticBody2D, ILevelResettable
         {
             sprite.Hide();
             sprite.Animation = "idle";
+
+            this.UpdateChannel(ChannelKey.Radiant, ChannelState.Off);
         }
     }
 }

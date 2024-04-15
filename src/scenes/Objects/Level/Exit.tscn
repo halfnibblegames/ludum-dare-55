@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://nodes/Objects/Level/Exit.cs" type="Script" id=2]
 
@@ -57,6 +57,9 @@ animations = [ {
 "speed": 9.0
 } ]
 
+[sub_resource type="CircleShape2D" id=15]
+radius = 13.0
+
 [node name="Exit" type="Area2D"]
 script = ExtResource( 2 )
 
@@ -78,3 +81,6 @@ __meta__ = {
 "source": "res://assets/exit.aseprite"
 }
 }
+
+[node name="TentacleCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )

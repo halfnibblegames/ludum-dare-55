@@ -29,6 +29,7 @@ tile_data = PoolIntArray( 65536, 0, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65
 [node name="Exit" parent="." instance=ExtResource( 7 )]
 position = Vector2( 280, 136 )
 NextLevelScene = ExtResource( 8 )
+RadiantSealsNeeded = 1
 
 [node name="Door" parent="." instance=ExtResource( 5 )]
 position = Vector2( 40, 104 )
