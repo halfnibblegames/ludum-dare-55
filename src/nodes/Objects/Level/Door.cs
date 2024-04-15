@@ -19,6 +19,14 @@ public class Door : StaticBody2D, ILevelState
 
         state = InitialState;
         applyStateToCollision();
+
+        if (GetNode<AnimatedSprite>("AnimatedSprite").Material is ShaderMaterial shaderMaterial)
+        {
+            var copy = (ShaderMaterial) shaderMaterial.Duplicate();
+            GetNode<AnimatedSprite>("AnimatedSprite").Material = copy;
+            var openState = InitialState == DoorState.Closed ? ChannelState.On : ChannelState.Off;
+            copy.SetShaderParam("hue", LevelState.CalculateHue(Channel, openState));
+        }
     }
 
     public void ConsumeChange(ChannelKey key, ChannelState newState)
