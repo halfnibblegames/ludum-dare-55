@@ -70,36 +70,38 @@ Channel = 1
 position = Vector2( 248, 264 )
 Channel = 2
 
-[node name="Pentagram" type="Sprite" parent="."]
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Pentagram" type="Sprite" parent="Decorations"]
 position = Vector2( 262, 90 )
 texture = ExtResource( 9 )
 
-[node name="Vote4Imp" type="Sprite" parent="."]
+[node name="Vote4Imp" type="Sprite" parent="Decorations"]
 position = Vector2( 179, 50 )
-z_index = 2
+z_index = 3
 texture = ExtResource( 7 )
 
-[node name="Bones" type="Sprite" parent="."]
+[node name="Bones" type="Sprite" parent="Decorations"]
 position = Vector2( 102, 250 )
 texture = ExtResource( 12 )
 
-[node name="MoarBones" type="Sprite" parent="."]
+[node name="MoarBones" type="Sprite" parent="Decorations"]
 position = Vector2( 105, 202 )
 texture = ExtResource( 13 )
 
-[node name="Bones2" type="Sprite" parent="."]
+[node name="Bones2" type="Sprite" parent="Decorations"]
 position = Vector2( 286, 232 )
 texture = ExtResource( 12 )
 
-[node name="Candles" type="Sprite" parent="."]
+[node name="Candles" type="Sprite" parent="Decorations"]
 position = Vector2( 279, 186 )
 texture = ExtResource( 11 )
 
-[node name="RlyehGang" type="Sprite" parent="."]
+[node name="RlyehGang" type="Sprite" parent="Decorations"]
 position = Vector2( 147, 274 )
-z_index = 2
+z_index = 3
 texture = ExtResource( 14 )
 
-[node name="Necronomicon" type="Sprite" parent="."]
+[node name="Necronomicon" type="Sprite" parent="Decorations"]
 position = Vector2( 20, 94 )
 texture = ExtResource( 10 )

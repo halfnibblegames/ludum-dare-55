@@ -1,12 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/Objects/Level/Switch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/decorations/pentagram.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Objects/Level/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Objects/Level/RadiantAnomaly.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Objects/Level/Exit.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Levels/Level4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/decorations/bones.png" type="Texture" id=9]
+[ext_resource path="res://assets/decorations/candles.png" type="Texture" id=10]
+[ext_resource path="res://assets/decorations/vote4imp.png" type="Texture" id=11]
+[ext_resource path="res://assets/decorations/moar_bones.png" type="Texture" id=12]
+[ext_resource path="res://assets/decorations/rlyeh_gang.png" type="Texture" id=13]
+[ext_resource path="res://assets/decorations/necronomicon.png" type="Texture" id=14]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource( 1 )
@@ -63,3 +70,58 @@ InitialState = 0
 
 [node name="RadiantAnomaly" parent="." instance=ExtResource( 6 )]
 position = Vector2( 104, 56 )
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Vote4Imp" type="Sprite" parent="Decorations"]
+position = Vector2( 40, 19 )
+z_index = 3
+texture = ExtResource( 11 )
+
+[node name="RlyehGang" type="Sprite" parent="Decorations"]
+position = Vector2( 233, 19 )
+z_index = 3
+texture = ExtResource( 13 )
+
+[node name="Pentagram" type="Sprite" parent="Decorations"]
+position = Vector2( 184, 224 )
+texture = ExtResource( 4 )
+
+[node name="Pentagram2" type="Sprite" parent="Decorations"]
+position = Vector2( 280, 48 )
+texture = ExtResource( 4 )
+
+[node name="Bones" type="Sprite" parent="Decorations"]
+position = Vector2( 72, 152 )
+texture = ExtResource( 9 )
+
+[node name="Candles" type="Sprite" parent="Decorations"]
+position = Vector2( 64, 144 )
+texture = ExtResource( 10 )
+
+[node name="Necronomicon" type="Sprite" parent="Decorations"]
+position = Vector2( 216, 136 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+texture = ExtResource( 14 )
+
+[node name="MoarBones" type="Sprite" parent="Decorations"]
+position = Vector2( 176, 48 )
+texture = ExtResource( 12 )
+
+[node name="Bones2" type="Sprite" parent="Decorations"]
+position = Vector2( 296, 160 )
+texture = ExtResource( 9 )
+
+[node name="MoarBones2" type="Sprite" parent="Decorations"]
+position = Vector2( 288, 160 )
+texture = ExtResource( 12 )
+
+[node name="MoarBones3" type="Sprite" parent="Decorations"]
+position = Vector2( 24, 40 )
+texture = ExtResource( 12 )
+
+[node name="Candles" type="Sprite" parent="."]
+position = Vector2( 56, 40 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 10 )
