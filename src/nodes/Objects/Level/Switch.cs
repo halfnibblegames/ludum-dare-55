@@ -1,5 +1,6 @@
 ﻿using Godot;
 using HalfNibbleGame.Systems;
+using JetBrains.Annotations;
 
 namespace HalfNibbleGame.Objects.Level;
 
@@ -12,7 +13,7 @@ public class Switch : StaticBody2D, ILevelState
     public override void _Ready()
     {
         base._Ready();
-        this.MakeInteractable(this, nameof(onActivated));
+        this.MakeInteractable(this, nameof(onActivated), _ => true);
         AddToGroup(Constants.LevelStateGroup);
 
         if (GetNode<Sprite>("Sprite").Material is ShaderMaterial shaderMaterial)
@@ -31,6 +32,7 @@ public class Switch : StaticBody2D, ILevelState
         shaderMaterial?.SetShaderParam("hue", LevelState.CalculateHue(key, state));
     }
 
+    [UsedImplicitly]
     private void onActivated(Actor actor)
     {
         var newState = state == ChannelState.Off ? ChannelState.On : ChannelState.Off;

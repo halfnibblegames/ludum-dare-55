@@ -52,7 +52,7 @@ public abstract class Actor : KinematicBody2D
     {
         IsActive = false;
         HasControl = false;
-        closestInteractable?.StopGlow();
+        closestInteractable?.StopGlow(this);
     }
 
     public void Banish()
@@ -98,7 +98,7 @@ public abstract class Actor : KinematicBody2D
 
         if (oldInteractable != closestInteractable)
         {
-            oldInteractable?.StopGlow();
+            oldInteractable?.StopGlow(this);
         }
 
         if (closestInteractable is null)
@@ -121,11 +121,11 @@ public abstract class Actor : KinematicBody2D
 
         if (isInteractableClose())
         {
-            closestInteractable?.StartGlow();
+            closestInteractable?.StartGlow(this);
         }
         else
         {
-            closestInteractable?.StopGlow();
+            closestInteractable?.StopGlow(this);
         }
     }
 

@@ -12,10 +12,10 @@ public class RadiantAnomaly : StaticBody2D, ILevelResettable
     public override void _Ready()
     {
         base._Ready();
-        this.MakeInteractable(this, nameof(onActivated));
-        AddToGroup(Constants.LevelResetGroup);
         sprite = GetNode<AnimatedSprite>("AnimatedSprite");
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+        this.MakeInteractable(this, nameof(onActivated), actor => actor is Host && !collisionShape.Disabled);
+        AddToGroup(Constants.LevelResetGroup);
         Reset();
     }
 
