@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://nodes/Objects/Host.cs" type="Script" id=1]
 
@@ -6,77 +6,126 @@
 radius = 6.7
 height = 4.0
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=15]
 load_path = "res://.import/host.png-9808f9432076b9f365d703fbf14c2bd5.stex"
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = SubResource( 2 )
-region = Rect2( 0, 0, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = SubResource( 2 )
-region = Rect2( 14, 0, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = SubResource( 2 )
-region = Rect2( 28, 0, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = SubResource( 2 )
-region = Rect2( 42, 0, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = SubResource( 2 )
-region = Rect2( 0, 19, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = SubResource( 2 )
-region = Rect2( 14, 19, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = SubResource( 2 )
-region = Rect2( 28, 19, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = SubResource( 2 )
-region = Rect2( 42, 19, 14, 19 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = SubResource( 2 )
+[sub_resource type="AtlasTexture" id=16]
+atlas = SubResource( 15 )
 region = Rect2( 0, 38, 14, 19 )
 
-[sub_resource type="AtlasTexture" id=12]
-atlas = SubResource( 2 )
+[sub_resource type="AtlasTexture" id=17]
+atlas = SubResource( 15 )
 region = Rect2( 14, 38, 14, 19 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="AtlasTexture" id=18]
+atlas = SubResource( 15 )
+region = Rect2( 28, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = SubResource( 15 )
+region = Rect2( 42, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = SubResource( 15 )
+region = Rect2( 56, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = SubResource( 15 )
+region = Rect2( 0, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = SubResource( 15 )
+region = Rect2( 14, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = SubResource( 15 )
+region = Rect2( 28, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = SubResource( 15 )
+region = Rect2( 42, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = SubResource( 15 )
+region = Rect2( 56, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = SubResource( 15 )
+region = Rect2( 0, 76, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = SubResource( 15 )
+region = Rect2( 0, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = SubResource( 15 )
+region = Rect2( 14, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = SubResource( 15 )
+region = Rect2( 28, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = SubResource( 15 )
+region = Rect2( 42, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = SubResource( 15 )
+region = Rect2( 56, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = SubResource( 15 )
+region = Rect2( 0, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = SubResource( 15 )
+region = Rect2( 14, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = SubResource( 15 )
+region = Rect2( 28, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = SubResource( 15 )
+region = Rect2( 42, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = SubResource( 15 )
+region = Rect2( 56, 19, 14, 19 )
+
+[sub_resource type="SpriteFrames" id=37]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 22 ), SubResource( 23 ), SubResource( 23 ), SubResource( 24 ), SubResource( 24 ), SubResource( 25 ), SubResource( 25 ), SubResource( 26 ), SubResource( 26 ) ],
+"loop": true,
+"name": "death",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 27 ), SubResource( 29 ) ],
 "loop": true,
 "name": "diagonal",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 27 ), SubResource( 29 ) ],
 "loop": true,
 "name": "horizontal",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 27 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
 "loop": true,
 "name": "idle",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 27 ), SubResource( 29 ) ],
 "loop": true,
 "name": "north",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 27 ), SubResource( 29 ) ],
 "loop": true,
 "name": "south",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
 "loop": true,
 "name": "summoning",
 "speed": 13.0
@@ -90,7 +139,7 @@ script = ExtResource( 1 )
 shape = SubResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 13 )
+frames = SubResource( 37 )
 animation = "idle"
 __meta__ = {
 "_aseprite_wizard_config_": {
@@ -99,7 +148,7 @@ __meta__ = {
 "o_folder": "res://assets",
 "o_name": "",
 "only_visible": false,
-"op_exp": false,
+"op_exp": true,
 "source": "res://assets/host.aseprite"
 }
 }

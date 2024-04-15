@@ -15,6 +15,7 @@ public class Host : Actor
 
     protected override float Speed => speed;
 
+    private bool IsDying { get; set; }
     public float Madness { get; set; }
     public float MadnessCap => madnessCap;
     public bool IsDismissingSeal { get; set; }
@@ -81,14 +82,25 @@ public class Host : Actor
     }
 
     protected override string CalculateAnimation() 
-        => !IsActive || IsDismissingSeal ? "summoning" : base.CalculateAnimation();
+        => IsDying ? "death" : !IsActive || IsDismissingSeal ? "summoning" : base.CalculateAnimation();
 
     [UsedImplicitly]
     public void OnAnimationFinished()
     {
-        if (!IsDismissingSeal) return;
-        
-        IsDismissingSeal = false;
-        ResumeControl();
+        if (IsDismissingSeal)
+        {
+            IsDismissingSeal = false;
+            ResumeControl();
+        }
+
+        if (IsDying)
+        {
+            IsDying = false;
+        }
+    }
+
+    public void Boom()
+    {
+        IsDying = true;
     }
 }

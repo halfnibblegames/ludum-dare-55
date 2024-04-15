@@ -38,7 +38,7 @@ public class WorldManager : Node2D
 
     public void KillPlayer()
     {
-        // TODO: boom
+        host.Boom();
         resetLevel();
     }
 
