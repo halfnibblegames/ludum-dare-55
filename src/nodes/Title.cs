@@ -16,8 +16,16 @@ public class Title : Control
         Settings.ShowTimer = showSpeedrunTimer;
     }
 
-    public void ToggleDeathCount(bool showDeathCount)
+    public override void _Process(float delta)
     {
-        Settings.ShowDeathCount = showDeathCount;
+        base._Process(delta);
+        if (Input.IsActionJustPressed("ui_accept") || Input.IsActionJustPressed("ui_select"))
+        {
+            GetNode<SceneChangerLabel>("StartButton")._GuiInput(new InputEventMouseButton
+            {
+                ButtonIndex = (int) ButtonList.Left,
+                Pressed = true
+            });
+        }
     }
 }

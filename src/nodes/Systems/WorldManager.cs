@@ -32,15 +32,20 @@ public class WorldManager : Node2D
     {
         camera = Global.Services.Get<ShakeCamera>();
         host = Global.Services.Get<Host>();
-        currentLevel = GetNodeOrNull<Level>("SandboxLevel");
 
         Global.Services.ProvideInScene(this);
-        if (currentLevel is not null) resetLevel();
 
         if (OS.IsDebugBuild())
         {
             AddChild(new DebugHelpers());
         }
+
+        CallDeferred(nameof(loadFirstLevel));
+    }
+
+    private void loadFirstLevel()
+    {
+        LoadLevel(Global.Prefabs.FirstLevel!);
     }
 
     public void KillPlayer()

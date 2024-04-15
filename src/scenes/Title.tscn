@@ -249,23 +249,10 @@ margin_top = -11.0
 margin_right = 150.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 1 )
-text = "Enable Speedrun Timer"
+text = "Show Speedrun Timer"
 
-[node name="Deluxe" type="Sprite" parent="Speerun"]
-position = Vector2( 510, -58.28 )
+[node name="Deluxe" type="Sprite" parent="."]
+position = Vector2( 1000, 344 )
 texture = ExtResource( 8 )
 
-[node name="DeathCount" type="CheckBox" parent="."]
-anchor_left = 0.5
-anchor_top = 0.647
-anchor_right = 0.5
-anchor_bottom = 0.647
-margin_left = -117.5
-margin_top = -11.0
-margin_right = 117.5
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 1 )
-text = "Show death count"
-
 [connection signal="toggled" from="Speerun" to="." method="ToggleSpeedrunTimer"]
-[connection signal="toggled" from="DeathCount" to="." method="ToggleDeathCount"]

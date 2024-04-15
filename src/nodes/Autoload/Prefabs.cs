@@ -10,6 +10,7 @@ public sealed class Prefabs : Node
     [Export] public PackedScene? Imp;
 
     [Export] public PackedScene? Glow;
+    [Export] public PackedScene? FirstLevel;
 
     [Export] public Texture? HorrorPortrait;
     [Export] public Texture? HostPortrait;

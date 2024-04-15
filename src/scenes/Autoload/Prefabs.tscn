@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://nodes/Autoload/Prefabs.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Objects/Imp.tscn" type="PackedScene" id=2]
@@ -8,12 +8,14 @@
 [ext_resource path="res://assets/unknown_portrait.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Objects/Level/Glow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/host.mp3" type="AudioStream" id=8]
+[ext_resource path="res://scenes/Levels/Level1.tscn" type="PackedScene" id=9]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
 Sandbox = ExtResource( 3 )
 Imp = ExtResource( 2 )
 Glow = ExtResource( 7 )
+FirstLevel = ExtResource( 9 )
 HorrorPortrait = ExtResource( 5 )
 HostPortrait = ExtResource( 6 )
 ImpPortrait = ExtResource( 4 )
