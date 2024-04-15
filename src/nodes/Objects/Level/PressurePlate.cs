@@ -22,6 +22,13 @@ public class PressurePlate : DetectingArea2D, ILevelState
         sprite = GetNode<AnimatedSprite>("AnimatedSprite");
         sfxOn = GetNode<AudioStreamPlayer>("SFX");
         sfxOff = GetNode<AudioStreamPlayer>("SFX_Off");
+
+        if (GetNode<AnimatedSprite>("AnimatedSprite").Material is ShaderMaterial shaderMaterial)
+        {
+            var copy = (ShaderMaterial) shaderMaterial.Duplicate();
+            GetNode<AnimatedSprite>("AnimatedSprite").Material = copy;
+            copy.SetShaderParam("hue", LevelState.CalculateHue(Channel));
+        }
     }
 
     protected override void OnActorEntered(Actor actor)

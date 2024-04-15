@@ -4,7 +4,7 @@
 [ext_resource path="res://nodes/Controls/ChannelDebugLabel.cs" type="Script" id=2]
 [ext_resource path="res://nodes/Objects/Level/PressurePlate.cs" type="Script" id=3]
 [ext_resource path="res://assets/button_up.mp3" type="AudioStream" id=4]
-[ext_resource path="res://assets/force_hue.gdshader" type="Shader" id=5]
+[ext_resource path="res://assets/force_door_hue.gdshader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 5 )
