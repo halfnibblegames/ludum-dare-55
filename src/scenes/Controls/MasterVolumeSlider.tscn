@@ -18,3 +18,5 @@ margin_right = 56.5
 margin_bottom = 8.0
 custom_icons/grabber = ExtResource( 3 )
 script = ExtResource( 1 )
+
+[connection signal="value_changed" from="MasterVolumeSlider" to="MasterVolumeSlider" method="OnValueChanged"]

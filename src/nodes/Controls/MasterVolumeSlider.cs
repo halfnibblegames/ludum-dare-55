@@ -12,7 +12,7 @@ public class MasterVolumeSlider : HSlider
         Step = 0.05;
         MinValue = 0.0f;
         MaxValue = 1.0f;
-        
+
         var audioService = Global.Services.Get<AudioService>();
         Value = audioService.MasterVolume;
     }

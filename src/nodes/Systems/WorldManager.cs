@@ -180,5 +180,10 @@ public class WorldManager : Node2D
         currentActor?.Suspend();
         actor.MakeActive();
         currentActor = actor;
+
+        if (Global.Services.TryGet<Game>(out var game))
+        {
+            game.ActorChanged(actor);
+        }
     }
 }
