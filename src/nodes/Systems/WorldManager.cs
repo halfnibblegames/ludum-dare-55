@@ -159,8 +159,8 @@ public class WorldManager : Node2D
     public void SummonForm(Vector2 location)
     {
         if (currentLevel is null) throw new InvalidOperationException();
+        if (!currentLevel.CanSummonImp) return;
 
-        // TODO: allow other forms
         var scene = Global.Prefabs.Imp;
         if (scene?.Instance() is not EldritchActor actor)
         {

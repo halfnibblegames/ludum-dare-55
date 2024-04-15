@@ -10,6 +10,7 @@ public class Level : Node2D
 
     [Export] public Vector2 StartTile;
     [Export] public int LevelIdentifier;
+    [Export] public bool CanSummonImp = true;
 
     public override void _Ready()
     {

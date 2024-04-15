@@ -17,6 +17,7 @@
 script = ExtResource( 1 )
 StartTile = Vector2( 4, 8 )
 LevelIdentifier = 1
+CanSummonImp = false
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
