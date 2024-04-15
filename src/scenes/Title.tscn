@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/TitleFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://nodes/SceneChangerLabel.cs" type="Script" id=2]
@@ -16,72 +16,121 @@ load_path = "res://.import/host.png-9808f9432076b9f365d703fbf14c2bd5.stex"
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = SubResource( 1 )
-region = Rect2( 0, 0, 14, 19 )
+region = Rect2( 0, 38, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = SubResource( 1 )
-region = Rect2( 14, 0, 14, 19 )
+region = Rect2( 14, 38, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = SubResource( 1 )
-region = Rect2( 28, 0, 14, 19 )
+region = Rect2( 28, 38, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = SubResource( 1 )
-region = Rect2( 42, 0, 14, 19 )
+region = Rect2( 42, 38, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = SubResource( 1 )
-region = Rect2( 0, 19, 14, 19 )
+region = Rect2( 56, 38, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = SubResource( 1 )
-region = Rect2( 14, 19, 14, 19 )
+region = Rect2( 0, 57, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = SubResource( 1 )
-region = Rect2( 28, 19, 14, 19 )
+region = Rect2( 14, 57, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = SubResource( 1 )
-region = Rect2( 42, 19, 14, 19 )
+region = Rect2( 28, 57, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = SubResource( 1 )
-region = Rect2( 0, 38, 14, 19 )
+region = Rect2( 42, 57, 14, 19 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = SubResource( 1 )
-region = Rect2( 14, 38, 14, 19 )
+region = Rect2( 56, 57, 14, 19 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="AtlasTexture" id=12]
+atlas = SubResource( 1 )
+region = Rect2( 0, 76, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = SubResource( 1 )
+region = Rect2( 0, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = SubResource( 1 )
+region = Rect2( 14, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = SubResource( 1 )
+region = Rect2( 28, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = SubResource( 1 )
+region = Rect2( 42, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = SubResource( 1 )
+region = Rect2( 56, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = SubResource( 1 )
+region = Rect2( 0, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = SubResource( 1 )
+region = Rect2( 14, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = SubResource( 1 )
+region = Rect2( 28, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = SubResource( 1 )
+region = Rect2( 42, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = SubResource( 1 )
+region = Rect2( 56, 19, 14, 19 )
+
+[sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 8 ), SubResource( 9 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 11 ), SubResource( 11 ), SubResource( 12 ), SubResource( 12 ) ],
+"loop": true,
+"name": "death",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
 "loop": true,
 "name": "diagonal",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
 "loop": true,
 "name": "horizontal",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 13 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
 "loop": true,
 "name": "idle",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
 "loop": true,
 "name": "north",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
 "loop": true,
 "name": "south",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "summoning",
 "speed": 13.0
@@ -100,9 +149,9 @@ color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 213, 490 )
 scale = Vector2( 8, 8 )
-frames = SubResource( 12 )
+frames = SubResource( 23 )
 animation = "summoning"
-frame = 3
+frame = 1
 playing = true
 __meta__ = {
 "_aseprite_wizard_config_": {
@@ -111,7 +160,7 @@ __meta__ = {
 "o_folder": "res://assets",
 "o_name": "",
 "only_visible": false,
-"op_exp": true,
+"op_exp": false,
 "source": "res://assets/host.aseprite"
 }
 }

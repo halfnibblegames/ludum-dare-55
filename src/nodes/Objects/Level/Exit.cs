@@ -14,10 +14,12 @@ public class Exit : DetectingArea2D, ILevelState
     [Export] public int RadiantSealsNeeded;
     public bool IsOpen => numberOfDismissedRadiantSeals >= RadiantSealsNeeded;
 
+    private bool moveAwayOnceAnimationFinishes;
     private AnimatedSprite animatedSprite = null!;
     private CollisionShape2D tentacleCollision = null!;
 
     private int numberOfDismissedRadiantSeals;
+    private Host? currentHost;
 
     public override void _Ready()
     {
@@ -32,6 +34,18 @@ public class Exit : DetectingArea2D, ILevelState
         updateOpenState();
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (moveAwayOnceAnimationFinishes && currentHost is not null && !currentHost.IsDying)
+        {
+            var nextLevel = NextLevelScene ?? Global.Prefabs.Sandbox;
+            if (nextLevel is null) return;
+            Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.LoadLevel), nextLevel);
+        }
+    }
+
     public override void Reset()
     {
         base.Reset();
@@ -42,12 +56,13 @@ public class Exit : DetectingArea2D, ILevelState
 
     protected override void OnActorEntered(Actor actor)
     {
-        if (actor is not Host) return;
+        if (actor is not Host host) return;
         if (!IsOpen) return;
-        
-        var nextLevel = NextLevelScene ?? Global.Prefabs.Sandbox;
-        if (nextLevel is null) return;
-        Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.LoadLevel), nextLevel);
+
+        moveAwayOnceAnimationFinishes = true;
+        host.BlockControl();
+        host.Boom();
+        currentHost = host;
     }
 
     public void ConsumeChange(ChannelKey key, ChannelState newState)

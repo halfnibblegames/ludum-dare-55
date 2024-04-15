@@ -15,7 +15,7 @@ public class Host : Actor
 
     protected override float Speed => speed;
 
-    private bool IsDying { get; set; }
+    public bool IsDying { get; private set; }
     public float Madness { get; set; }
     public float MadnessCap => madnessCap;
     public bool IsDismissingSeal { get; set; }
