@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using HalfNibbleGame.Autoload;
+using HalfNibbleGame.Controls;
 using HalfNibbleGame.Objects;
 using HalfNibbleGame.Objects.Level;
 

@@ -1,41 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Mime;
 using Godot;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Objects;
 using JetBrains.Annotations;
 
-public enum Speaker
-{
-    Host,
-    Imp,
-    Clhubhukhapuslhamazarathoka,
-    Unknown
-}
-
-public static class SpeakerExtensions
-{
-    public static Texture Portrait(this Speaker speaker)
-        => speaker switch
-        {
-            Speaker.Host => Global.Prefabs.HostPortrait,
-            Speaker.Imp => Global.Prefabs.ImpPortrait,
-            Speaker.Clhubhukhapuslhamazarathoka => Global.Prefabs.HorrorPortrait,
-            Speaker.Unknown => Global.Prefabs.UnknownPortrait,
-            _ => throw new ArgumentOutOfRangeException(nameof(speaker), speaker, null)
-        };
-}
-
-public sealed record Dialog(
-    string Text,
-    Speaker Speaker
-);
-
-public sealed record Cinematic(
-    List<Dialog> Dialogs,
-    bool AllowAutoSkip
-);
+namespace HalfNibbleGame.Controls;
 
 public class DialogService : Control
 {
@@ -163,7 +133,7 @@ public class DialogService : Control
 
         if (isVisible || cinematicIsAutoSkippable)
             return;
-        
+
         var host = Global.Services.Get<Host>();
         if (host.IsActive)
         {
@@ -177,3 +147,34 @@ public class DialogService : Control
         currentDialog = null;
     }
 }
+
+public enum Speaker
+{
+    Host,
+    Imp,
+    Clhubhukhapuslhamazarathoka,
+    Unknown
+}
+
+public static class SpeakerExtensions
+{
+    public static Texture Portrait(this Speaker speaker)
+        => speaker switch
+        {
+            Speaker.Host => Global.Prefabs.HostPortrait!,
+            Speaker.Imp => Global.Prefabs.ImpPortrait!,
+            Speaker.Clhubhukhapuslhamazarathoka => Global.Prefabs.HorrorPortrait!,
+            Speaker.Unknown => Global.Prefabs.UnknownPortrait!,
+            _ => throw new ArgumentOutOfRangeException(nameof(speaker), speaker, null)
+        };
+}
+
+public sealed record Dialog(
+    string Text,
+    Speaker Speaker
+);
+
+public sealed record Cinematic(
+    List<Dialog> Dialogs,
+    bool AllowAutoSkip
+);

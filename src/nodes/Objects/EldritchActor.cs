@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 using HalfNibbleGame.Autoload;
+using HalfNibbleGame.Controls;
 using HalfNibbleGame.Systems;
 
 namespace HalfNibbleGame.Objects;

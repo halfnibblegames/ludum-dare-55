@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/Objects/Level/Switch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Objects/Level/RadiantAnomaly.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Objects/Level/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Levels/Level7.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Objects/Level/Exit.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Objects/Level/PressurePlate.tscn" type="PackedScene" id=8]
 
@@ -27,6 +28,7 @@ tile_data = PoolIntArray( 65536, 0, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65
 
 [node name="Exit" parent="." instance=ExtResource( 7 )]
 position = Vector2( 168, 136 )
+NextLevelScene = ExtResource( 6 )
 RadiantSealsNeeded = 1
 
 [node name="Switch" parent="." instance=ExtResource( 3 )]
