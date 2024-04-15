@@ -36,6 +36,7 @@ public class PressurePlate : DetectingArea2D, ILevelState
         {
             this.UpdateChannel(Channel, ChannelState.Off);
             sprite.Animation = unpressedAnimation;
+            GetNode<AudioStreamPlayer>("SFX_Off").Play();
         }
     }
 
