@@ -57,7 +57,9 @@ public class Host : Actor
 
         if (!HasControl) return;
 
-        if (Input.IsActionJustPressed("summon_imp") && tryChooseSummonLocation(out summonLocation))
+        if (Input.IsActionJustPressed("summon_imp") &&
+            tryChooseSummonLocation(out summonLocation) &&
+            Global.Services.Get<WorldManager>().CanSummon)
         {
             Suspend();
             summoningTimeout = summoningDuration;

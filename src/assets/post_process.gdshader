@@ -6,7 +6,7 @@ uniform sampler2D noise;
 
 void fragment() {
     vec4 original = texture(SCREEN_TEXTURE, SCREEN_UV);
-    float mult = texture(noise, SCREEN_UV).r;
+    float mult = 0.3 + texture(noise, SCREEN_UV).r;
     float offset = amount * mult;
     float r = texture(SCREEN_TEXTURE, SCREEN_UV + vec2(offset * SCREEN_PIXEL_SIZE.x, 0)).r;
     float g = original.g;

@@ -7,7 +7,7 @@ namespace HalfNibbleGame.Controls;
 public class MadnessMeter : TextureRect
 {
     private const int fullMadnessBarSize = 1060;
-    private const float maxAberration = 5;
+    private const float maxAberration = 8;
     private const float barAnimationDuration = 0.4f;
     private bool meterIsVisible;
 

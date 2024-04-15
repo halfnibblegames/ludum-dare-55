@@ -29,6 +29,8 @@ public class WorldManager : Node2D
     [Signal] public delegate void SummonStarted();
     [Signal] public delegate void SummonEnded();
 
+    public bool CanSummon => currentLevel?.CanSummonImp ?? false;
+
     public override void _Ready()
     {
         camera = Global.Services.Get<ShakeCamera>();
@@ -156,16 +158,16 @@ public class WorldManager : Node2D
         activateActor(host);
     }
 
-    public void SummonForm(Vector2 location)
+    public bool SummonForm(Vector2 location)
     {
         if (currentLevel is null) throw new InvalidOperationException();
-        if (!currentLevel.CanSummonImp) return;
+        if (!currentLevel.CanSummonImp) return false;
 
         var scene = Global.Prefabs.Imp;
         if (scene?.Instance() is not EldritchActor actor)
         {
             GD.PrintErr("Failed to instantiate summoned form.");
-            return;
+            return false;
         }
 
         GetParent().AddChild(actor);
@@ -176,6 +178,7 @@ public class WorldManager : Node2D
         actor.Reset(location);
         activateActor(actor);
         EmitSignal(nameof(SummonStarted));
+        return true;
     }
 
     public void TryReturnToHost()
