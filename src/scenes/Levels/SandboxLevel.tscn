@@ -20,6 +20,7 @@ script = ExtResource( 1 )
 StartTile = Vector2( 3, 7 )
 
 [node name="Floor" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
