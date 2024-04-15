@@ -12,6 +12,9 @@ config_version=4
 
 config/name="Eldritch Vessel Academy"
 run/main_scene="res://scenes/Splash.tscn"
+config/icon="res://assets/icon.png"
+config/macos_native_icon="res://assets/imp_portrait.icns"
+config/windows_native_icon="res://assets/imp_portrait.ico"
 
 [autoload]
 
