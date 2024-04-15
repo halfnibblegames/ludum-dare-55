@@ -29,7 +29,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 7, 3.5 )
+extents = Vector2( 6, 2 )
 
 [node name="PressurePlate" type="Area2D"]
 script = ExtResource( 3 )
@@ -50,7 +50,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
+position = Vector2( 0, -1 )
 shape = SubResource( 5 )
 
 [node name="DebugLabel" type="Label" parent="."]
