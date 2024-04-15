@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using HalfNibbleGame.Systems;
 using JetBrains.Annotations;
 
@@ -28,7 +29,10 @@ public class RadiantAnomaly : StaticBody2D, ILevelResettable
 
     private void onActivated(Actor actor)
     {
-        if (actor is not Host host || collisionShape.Disabled) return;
+        if (actor is not Host host || collisionShape.Disabled)
+        {
+            throw new InvalidOperationException("Unexpected to get past the interactable check.");
+        }
 
         host.IsDismissingSeal = true;
         host.BlockControl();

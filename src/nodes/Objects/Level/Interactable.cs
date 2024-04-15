@@ -27,6 +27,7 @@ public sealed class Interactable : Node2D
 
     public void Interact(Actor actor)
     {
+        if (!canInteract(actor)) return;
         EmitSignal(nameof(Interacted), actor);
     }
 
