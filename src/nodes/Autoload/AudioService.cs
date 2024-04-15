@@ -34,13 +34,13 @@ public sealed class AudioService : Node
         MasterVolume = (float) configFile.GetValue(
             section: volumeConfigurationSection,
             key: masterVolumeConfigurationKey,
-            @default: 1.0f
+            @default: 0.5f
         );
 
         masterVolumeBeforeMuting = (float) configFile.GetValue(
             section: volumeConfigurationSection,
             key: masterVolumeBeforeMutingKey,
-            @default: 1.0f
+            @default: 0.5f
         );
     }
 
