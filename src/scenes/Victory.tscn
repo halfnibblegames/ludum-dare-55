@@ -1,0 +1,253 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://assets/TitleFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://nodes/SceneChangerLabel.cs" type="Script" id=2]
+[ext_resource path="res://scenes/Controls/MasterVolumeSlider.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/Victory.cs" type="Script" id=4]
+[ext_resource path="res://assets/PixelifySansLarge.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/host.png-9808f9432076b9f365d703fbf14c2bd5.stex"
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = SubResource( 1 )
+region = Rect2( 0, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = SubResource( 1 )
+region = Rect2( 14, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = SubResource( 1 )
+region = Rect2( 28, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = SubResource( 1 )
+region = Rect2( 42, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = SubResource( 1 )
+region = Rect2( 56, 38, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = SubResource( 1 )
+region = Rect2( 0, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = SubResource( 1 )
+region = Rect2( 14, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = SubResource( 1 )
+region = Rect2( 28, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = SubResource( 1 )
+region = Rect2( 42, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = SubResource( 1 )
+region = Rect2( 56, 57, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = SubResource( 1 )
+region = Rect2( 0, 76, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = SubResource( 1 )
+region = Rect2( 0, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = SubResource( 1 )
+region = Rect2( 14, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = SubResource( 1 )
+region = Rect2( 28, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = SubResource( 1 )
+region = Rect2( 42, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = SubResource( 1 )
+region = Rect2( 56, 0, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = SubResource( 1 )
+region = Rect2( 0, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = SubResource( 1 )
+region = Rect2( 14, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = SubResource( 1 )
+region = Rect2( 28, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = SubResource( 1 )
+region = Rect2( 42, 19, 14, 19 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = SubResource( 1 )
+region = Rect2( 56, 19, 14, 19 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 8 ), SubResource( 9 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 11 ), SubResource( 11 ), SubResource( 12 ), SubResource( 12 ) ],
+"loop": true,
+"name": "death",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
+"loop": true,
+"name": "diagonal",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
+"loop": true,
+"name": "horizontal",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "idle",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
+"loop": true,
+"name": "north",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
+"loop": true,
+"name": "south",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "summoning",
+"speed": 13.0
+} ]
+
+[node name="VictoryScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 213, 490 )
+scale = Vector2( 8, 8 )
+frames = SubResource( 23 )
+animation = "summoning"
+playing = true
+__meta__ = {
+"_aseprite_wizard_config_": {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://assets",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/host.aseprite"
+}
+}
+
+[node name="RestartButton" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = 104.0
+margin_right = 61.0
+margin_bottom = 152.0
+rect_pivot_offset = Vector2( 144, 38 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 1 )
+text = "RESTART"
+script = ExtResource( 2 )
+TargetScenePath = "res://scenes/Game.tscn"
+
+[node name="VolumeController" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.875
+anchor_right = 0.5
+anchor_bottom = 0.875
+margin_left = -88.0
+margin_top = -24.0
+margin_right = 88.0
+margin_bottom = 0.0
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -236.0
+margin_top = 105.0
+margin_right = 236.0
+margin_bottom = 153.0
+custom_fonts/font = ExtResource( 1 )
+text = "YOU PASSED"
+align = 1
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.844
+anchor_right = 0.5
+anchor_bottom = 0.844
+margin_left = -43.0
+margin_top = -48.0
+margin_right = 43.0
+custom_fonts/font = ExtResource( 1 )
+text = "Volume"
+
+[node name="Label3" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -272.0
+margin_top = 208.0
+margin_right = -32.0
+margin_bottom = 256.0
+custom_fonts/font = ExtResource( 1 )
+text = "TIME SPENT"
+align = 1
+
+[node name="Label4" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 32.0
+margin_top = 208.0
+margin_right = 272.0
+margin_bottom = 256.0
+custom_fonts/font = ExtResource( 1 )
+text = "OF WHICH AS IMP"
+align = 1
+
+[node name="TotalTime" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -198.0
+margin_top = 272.0
+margin_right = -106.0
+margin_bottom = 317.0
+custom_fonts/font = ExtResource( 5 )
+text = "00:00"
+align = 1
+
+[node name="ImpTime" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 104.0
+margin_top = 272.0
+margin_right = 196.0
+margin_bottom = 317.0
+custom_fonts/font = ExtResource( 5 )
+text = "00:00"
+align = 1

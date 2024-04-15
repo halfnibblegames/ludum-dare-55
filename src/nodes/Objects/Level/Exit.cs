@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using Godot;
+﻿using Godot;
 using HalfNibbleGame.Autoload;
 using HalfNibbleGame.Systems;
 
@@ -40,9 +39,12 @@ public class Exit : DetectingArea2D, ILevelState
 
         if (moveAwayOnceAnimationFinishes && currentHost is not null && !currentHost.IsDying)
         {
-            var nextLevel = NextLevelScene ?? Global.Prefabs.Sandbox;
-            if (nextLevel is null) return;
-            Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.LoadLevel), nextLevel);
+            if (NextLevelScene is not null)
+            {
+                Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.LoadLevel), NextLevelScene);
+                return;
+            }
+            Global.Services.Get<WorldManager>().CallDeferred(nameof(WorldManager.FinishGame));
         }
     }
 

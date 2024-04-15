@@ -56,4 +56,10 @@ public class Statistics : Node
     {
         isSummonActive = false;
     }
+
+    public void OnGameFinished()
+    {
+        Victory.TotalTime = DateTime.Now - startTime;
+        Victory.ImpTime = TimeSpan.FromSeconds(totalMadnessTime);
+    }
 }

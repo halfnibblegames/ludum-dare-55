@@ -6,7 +6,6 @@ namespace HalfNibbleGame.Autoload;
 [UsedImplicitly]
 public sealed class Prefabs : Node
 {
-    [Export] public PackedScene? Sandbox;
     [Export] public PackedScene? Imp;
 
     [Export] public PackedScene? Glow;

@@ -22,6 +22,7 @@ public class WorldManager : Node2D
 
     [Signal] public delegate void LevelReset();
     [Signal] public delegate void LevelCompleted();
+    [Signal] public delegate void GameFinished();
 
     [Signal] public delegate void PlayedDied();
 
@@ -51,7 +52,6 @@ public class WorldManager : Node2D
     public void KillPlayer()
     {
         host.Boom();
-        EmitSignal(nameof(PlayedDied));
         resetLevel();
     }
 
@@ -76,10 +76,10 @@ public class WorldManager : Node2D
 
     public override void _Process(float delta)
     {
-        // TODO: play death animation
         if (host.Madness >= host.MadnessCap || Input.IsActionJustPressed("kill_player"))
         {
-            resetLevel();
+            EmitSignal(nameof(PlayedDied));
+            KillPlayer();
             return;
         }
 
@@ -202,5 +202,11 @@ public class WorldManager : Node2D
         {
             game.ActorChanged(actor);
         }
+    }
+
+    public void FinishGame()
+    {
+        EmitSignal(nameof(GameFinished));
+        Global.Instance.SwitchScene("res://scenes/Victory.tscn");
     }
 }

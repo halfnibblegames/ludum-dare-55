@@ -95,6 +95,7 @@ material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[connection signal="GameFinished" from="ViewportContainer/Viewport/World" to="Statistics" method="OnGameFinished"]
 [connection signal="LevelCompleted" from="ViewportContainer/Viewport/World" to="Statistics" method="OnLevelCompleted"]
 [connection signal="LevelReset" from="ViewportContainer/Viewport/World" to="Statistics" method="OnLevelReset"]
 [connection signal="PlayedDied" from="ViewportContainer/Viewport/World" to="Statistics" method="OnPlayerDeath"]
