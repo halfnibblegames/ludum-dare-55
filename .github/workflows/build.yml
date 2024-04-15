@@ -104,7 +104,7 @@ jobs:
           name: web
           path: build/web
           retention-days: 1
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build/web
+      # - name: Deploy 🚀
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     folder: build/web
