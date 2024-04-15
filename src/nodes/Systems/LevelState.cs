@@ -12,14 +12,14 @@ public static class LevelState
         node.GetTree().CallGroup(Constants.LevelStateGroup, nameof(ILevelState.ConsumeChange), key, newState);
     }
 
-    public static float CalculateHue(ChannelKey key, ChannelState state)
+    public static float CalculateHue(ChannelKey key)
     {
-        return (key, state) switch
+        return (key) switch
         {
-            (ChannelKey.A, ChannelState.Off) => 0.63f,
-            (ChannelKey.A, ChannelState.On) => 0.0f,
-            (ChannelKey.B, ChannelState.Off) => 0.84f,
-            (ChannelKey.B, ChannelState.On) => 0.17f,
+            (ChannelKey.A) => 0.63f,
+            (ChannelKey.B) => 0.0f,
+            (ChannelKey.C) => 0.84f,
+            (ChannelKey.D) => 0.17f,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -30,6 +30,8 @@ public enum ChannelKey
     None = 0,
     A,
     B,
+    C,
+    D,
     Radiant
 }
 

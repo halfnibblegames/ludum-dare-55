@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://nodes/Level.cs" type="Script" id=1]
 [ext_resource path="res://assets/LevelTiles.tres" type="TileSet" id=2]
@@ -7,13 +7,14 @@
 [ext_resource path="res://scenes/Objects/Level/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Objects/Level/Exit.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Levels/Level1.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/Levels/Level7.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Levels/Level8.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Levels/Level3.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Levels/Level2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Levels/Level4.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Objects/Level/PressurePlate.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/Levels/Level5.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Levels/Level6.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Levels/Level7.tscn" type="PackedScene" id=15]
 
 [node name="SandboxLevel" type="Node2D"]
 script = ExtResource( 1 )
@@ -65,6 +66,10 @@ NextLevelScene = ExtResource( 14 )
 
 [node name="Level7Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 224, 48 )
+NextLevelScene = ExtResource( 15 )
+
+[node name="Level8Portal" parent="." instance=ExtResource( 6 )]
+position = Vector2( 256, 48 )
 NextLevelScene = ExtResource( 8 )
 
 [node name="RadiantAnomaly" parent="." instance=ExtResource( 4 )]

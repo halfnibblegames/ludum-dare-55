@@ -29,7 +29,7 @@ public class Switch : StaticBody2D, ILevelState
 
         state = newState;
         var shaderMaterial = GetNode<Sprite>("Sprite").Material as ShaderMaterial;
-        shaderMaterial?.SetShaderParam("hue", LevelState.CalculateHue(Channel, state));
+        shaderMaterial?.SetShaderParam("hue", LevelState.CalculateHue(Channel));
     }
 
     [UsedImplicitly]
