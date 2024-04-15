@@ -104,6 +104,7 @@ public class DialogService : Control
         if (dialogQueue.Count > 0)
             return;
 
+        dialogTextBox.Text = "";
         foreach (var dialog in cinematic.Dialogs)
         {
             dialogQueue.Enqueue(dialog);
